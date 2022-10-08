@@ -24,42 +24,9 @@
 </head>
 <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header">
-        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-        <!-- Navbar Right Menu-->
-        <ul class="app-nav">
-            <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-                <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="{{route('admin.logout')}}"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </header>
+    @include('admin.layouts.navbar')
     <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-    <aside class="app-sidebar">
-        <ul class="app-menu">
-            <li><a class="treeview-item" href="{{route('admin.participant.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Participants</a>
-
-            </li>
-
-            <li><a class="treeview-item" href="{{route('admin.investor.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Investors</a>
-
-            </li>
-
-            <li><a class="treeview-item" href="{{route('admin.leads.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Leads</a>
-
-            </li>
-
-            <li><a class="treeview-item" href="{{route('admin.winner.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Winners</a>
-
-            </li>
-
-            <li><a class="treeview-item" href="{{route('admin.dar-al-nashr.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Dour Al-Nashr</a>
-
-            </li>
-        </ul>
-    </aside>
+    @include('admin.layouts.sidebar')
 
     <main class="app-content">
         <div class="app-title">
@@ -144,6 +111,7 @@
       	    ga('send', 'pageview');
         }
     </script>
+
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     @include('sweetalert::alert')
 </body>

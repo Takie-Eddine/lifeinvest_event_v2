@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EventBookController;
 use App\Http\Controllers\Admin\InvestorController;
 use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ParticipantController  ;
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,13 @@ use App\Http\Controllers\Admin\ParticipantController  ;
             Route::get('/export2' , [DarAlNashrController::class , 'exportxls'])->name('admin.dar-al-nashr.exportxls');
 
         });
+
+
+        Route::get('notification', [NotificationController::class, 'index'])->name('admin.notification');
+        Route::get('notification/read', [NotificationController::class, 'read'])->name('admin.notification.read');
+
+
+
         Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 
     });

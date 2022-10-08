@@ -27,51 +27,60 @@
     @include('admin.layouts.navbar')
     <!-- Sidebar menu-->
     @include('admin.layouts.sidebar')
+
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-edit"></i> Dashboard </h1>
+                <h1><i class="fa fa-edit"></i> Notification </h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item">Event Book</li>
-                <li class="breadcrumb-item"><a href="#">Winner</a></li>
+                <li class="breadcrumb-item">Notification</li>
+                <li class="breadcrumb-item"><a href="#">Index</a></li>
             </ul>
         </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
-                        <h3 class="tile-title">List Of Participants</h3>
-                        <a class="btn btn-primary" href="{{route('admin.winner.exportods')}}">Export(.ods)</a>
-                        <a class="btn btn-primary" href="{{route('admin.winner.exportcls')}}">Export(.csv)</a>
-                        <a class="btn btn-primary" href="{{route('admin.winner.exportxls')}}">Export(.xls)</a>
-                        <br>
-                        <br>
-                        <table class="table table-hover table-bordered" id="sampleTable3">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Number</th>
-                                    <th>Full Name</th>
-                                    <th>Phone Number</th>
-                                    <th>Action </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($partics as $partic)
-                                    <tr>
-                                        <td>{{$partic->id}}</td>
-                                        <td>{{$partic->number}}</td>
-                                        <td>{{$partic->full_name}}</td>
-                                        <td>{{$partic->phone_number}}</td>
-                                        <td><a href="{{route('admin.winner.delete',$partic->id)}}" class="btn btn-danger">Delete</a></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <section class="invoice">
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <h2 class="page-header"><i class="fa fa-bell-o fa-lg"></i> Notification</h2>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Created At</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (auth()->user()->notifications as $notification )
+                                            <tr>
+                                                <td>{{$notification->data['id']}}</td>
+                                                <td>{{$notification->data['title']}}</td>
+                                                <td>{{$notification->data['first_name']}}</td>
+                                                <td>{{$notification->data['last_name']}}</td>
+                                                <td>{{$notification->created_at}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        <div class="row d-print-none mt-2">
+                            <div class="col-12 text-right"><a class="btn btn-primary" href="{{route('admin.notification.read')}}" target="_blank"><i class="fa fa-envelope-open-o"></i>Mark as read</a></div>
+                        </div>
+                        </section>
                     </div>
                 </div>
-
             </div>
     </main>
 
@@ -101,7 +110,6 @@
       	    ga('send', 'pageview');
         }
     </script>
-
 
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     @include('sweetalert::alert')

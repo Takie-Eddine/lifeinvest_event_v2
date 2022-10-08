@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InvestorRequest;
+use App\Models\Admin;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Investor;
 use App\Models\Option;
 use App\Models\Share;
+use App\Notifications\InvestorNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class InvestorController extends Controller
 {
@@ -23,7 +26,7 @@ class InvestorController extends Controller
         $data['counter_rekmaz'] = Investor::where('doshtu','==',0)->sum('counter');
 
         $data['counter_doshtu'] = (Investor::sum('counter') - $data['counter_rekmaz']);
-        
+
         return view('investor.index',$data);
 
     }
@@ -32,11 +35,11 @@ class InvestorController extends Controller
 
     public function create(InvestorRequest $request){
 
-        try{
+        // try{
 
             DB::beginTransaction();
 
-          if (!$request->has('project')){
+        if (!$request->has('project')){
                 return redirect()->route('investor.index')->with(['toast_error' => 'There is problem']);
             }
 
@@ -61,8 +64,8 @@ class InvestorController extends Controller
                 'doshtu' => $doshtu,
                 'rekmaz' => $rekmaz,
             ]);
-            
-            
+
+
             $msg =__('investor.success');
             $erroMsg =__('investor.error');
 
@@ -73,13 +76,21 @@ class InvestorController extends Controller
                 'share_number' =>$request->share_number,
             ]);
 
+
+
+            $admin = Admin::get();
+
+            Notification::send($admin,new InvestorNotification($investor));
+            //$admin->notify(new InvestorNotification($investor));
+
+
             DB::commit();
             return redirect()->route('investor.index')->with(['toast_success'=>$msg]);
-        }catch(Exception $ex){
+        // }catch(Exception $ex){
 
-            DB::rollback();
-            return redirect()->route('investor.index')->with(['error' => $erroMsg]);
-        }
+        //     DB::rollback();
+        //     return redirect()->route('investor.index')->with(['error' => $erroMsg]);
+        // }
 
     }
 

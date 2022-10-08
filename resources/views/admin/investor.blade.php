@@ -24,42 +24,9 @@
 </head>
 <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header">
-        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-        <!-- Navbar Right Menu-->
-        <ul class="app-nav">
-            <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-                <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="{{route('admin.logout')}}"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </header>
+    @include('admin.layouts.navbar')
     <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-    <aside class="app-sidebar">
-        <ul class="app-menu">
-            <li><a class="treeview-item" href="{{route('admin.participant.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Participants</a>
-
-            </li>
-
-            <li><a class="treeview-item" href="{{route('admin.investor.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Investors</a>
-
-            </li>
-
-            <li><a class="treeview-item" href="{{route('admin.leads.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Leads</a>
-
-            </li>
-
-            <li><a class="treeview-item" href="{{route('admin.winner.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Winners</a>
-
-            </li>
-
-            <li><a class="treeview-item" href="{{route('admin.dar-al-nashr.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Dour Al-Nashr</a>
-
-            </li>
-        </ul>
-    </aside>
+    @include('admin.layouts.sidebar')
 
     <main class="app-content">
         <div class="app-title">
@@ -98,7 +65,7 @@
                                     <label class="control-label">Max Value</label>
                                     <input class="form-control" type="number" placeholder="Enter max value" name="max_value" value="{{$options->max_value}}">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label class="control-label">Max Doshtu</label>
                                     <input class="form-control" type="number" placeholder="Enter max value" name="doshtu_max" value="{{$options->doshtu_max}}">
@@ -107,7 +74,7 @@
                                     <label class="control-label">Max Rekmaz</label>
                                     <input class="form-control" type="number" placeholder="Enter max value" name="rekmaz_max" value="{{$options->rekmaz_max}}">
                                 </div>
-                                
+
                                 <div class="tile-footer">
                                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;
                                     {{-- <a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a> --}}
@@ -153,6 +120,8 @@
                                     <th>Country</th>
                                     <th>Share Number</th>
                                     <th>Investment Value</th>
+                                    <th>Doshtu </th>
+                                    <th>Rekmaz </th>
                                     <th>Action </th>
                                 </tr>
                             </thead>
@@ -175,6 +144,8 @@
                                                 <span class="fw-bold">{{$item->investment_value}} ,</span>
                                             @endforeach
                                         </td>
+                                        <td>{{$investor->doshtu}}</td>
+                                        <td>{{$investor->rekmaz}}</td>
                                         <td><a href="{{route('admin.investor.delete',$investor->id)}}" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 @endforeach
@@ -211,6 +182,7 @@
       	    ga('send', 'pageview');
         }
     </script>
+
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     @include('sweetalert::alert')
 </body>
