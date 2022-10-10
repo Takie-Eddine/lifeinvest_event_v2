@@ -3,7 +3,7 @@
     <!-- Navbar Right Menu-->
 
     <ul class="app-nav">
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"><span class="badge badge badge-danger badge-pill float-right mr-2">{{auth()->user()->unreadNotifications->count()}}</span></i></a>
             <ul class="app-notification dropdown-menu dropdown-menu-right">
                 <div  class="app-notification__title" id="notification_counter">You have {{auth()->user()->unreadNotifications->count()}} new notifications.</div>
                     <div class="app-notification__content">
