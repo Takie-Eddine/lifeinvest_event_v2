@@ -36,8 +36,8 @@ class InvestorExport implements FromQuery, WithHeadings ,WithMapping
             $investor->last_name,
             $investor->phone,
             $investor->email,
-            $investor->doshtu,
-            $investor->rekmaz,
+            $investor->getDoshtu(),
+            $investor->getRekmaz(),
             $investor->shares->pluck('investment_value')->implode(',')
         ];
 

@@ -144,8 +144,8 @@
                                                 <span class="fw-bold">{{$item->investment_value}} ,</span>
                                             @endforeach
                                         </td>
-                                        <td>{{$investor->doshtu}}</td>
-                                        <td>{{$investor->rekmaz}}</td>
+                                        <td>{{$investor->getDoshtu()}}</td>
+                                        <td>{{$investor->getRekmaz()}}</td>
                                         <td><a href="{{route('admin.investor.delete',$investor->id)}}" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 @endforeach

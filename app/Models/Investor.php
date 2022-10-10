@@ -17,6 +17,15 @@ class Investor extends Model
 
 
 
+
+    public function getDoshtu(){
+        return  $this -> doshtu  == 0 ?  '  '   : 'yes' ;
+    }
+    public function getRekmaz(){
+        return  $this -> rekmaz  == 0 ?  '  '   : 'yes' ;
+    }
+
+
     public function country(){
         return $this->belongsTo(Country::class);
     }
