@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                         <div class="row d-print-none mt-2">
-                            <div class="col-12 text-right"><a class="btn btn-primary" href="{{route('admin.notification.read')}}" target="_blank"><i class="fa fa-envelope-open-o"></i>Mark as read</a></div>
+                            <div class="col-12 text-right"><a class="btn btn-primary" href="{{route('admin.notification.read')}}" ><i class="fa fa-envelope-open-o"></i>Mark as read</a></div>
                         </div>
                         </section>
                     </div>
