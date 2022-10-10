@@ -30,8 +30,9 @@ class PersonetRequest extends FormRequest
             'email' => 'nullable|email|unique:persones',
             'photo' => 'nullable',
             'photo.*' => 'mimes:jpg,jpeg,png',
-            // 'doshtu'=> 'required_without_all:rekmaz',
-            //             'rekmaz'=> 'required_without_all:doshtu',
+            'doshtu'=> 'required_without_all:rekmaz,undefined',
+            'rekmaz'=> 'required_without_all:doshtu,undefined',
+            'undefined'=> 'required_without_all:doshtu,rekmaz',
 
         ];
     }

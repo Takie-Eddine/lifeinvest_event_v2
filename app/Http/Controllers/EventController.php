@@ -2,10 +2,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonetRequest;
+use App\Models\Admin;
 use App\Models\Persone;
+use App\Notifications\LeadNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class EventController extends Controller
 {
@@ -38,8 +41,8 @@ class EventController extends Controller
             }else{
                 $request->request->add(['rekmaz' => 1]);
             }
-            
-              if (!$request->has('undefined')){
+
+            if (!$request->has('undefined')){
                 $request->request->add(['undefined' => 0]);
             }else{
                 $request->request->add(['undefined' => 1]);
@@ -64,16 +67,21 @@ class EventController extends Controller
             'note' => $request->note,
         ]);
 
- $msg =__('investor.success');
+
+        $admin = Admin::get();
+
+        Notification::send($admin,new LeadNotification($persone));
+
+        $msg =__('investor.success');
             $erroMsg =__('investor.error');
-            
+
         DB::commit();
             return redirect()->route('event.index')->with(['toast_success'=>$msg]);
 
         }catch(Exception $ex){
 
             DB::rollback();
-            return redirect()->route('event.index')->with(['error' => $erroMsg]);
+            return redirect()->route('event.index')->with(['toast_error' => $erroMsg]);
         }
 
 

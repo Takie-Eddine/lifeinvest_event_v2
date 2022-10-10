@@ -25,5 +25,16 @@ class Persone extends Model
     public function getActive1(){
         return  $this -> rekmaz  == 0 ?  'not interested '   : 'interested' ;
     }
-    
+
+    public function getDoshtu(){
+        return  $this -> doshtu  == 0 ?  '  '   : 'yes' ;
+    }
+    public function getRekmaz(){
+        return  $this -> rekmaz  == 0 ?  '  '   : 'yes' ;
+    }
+    public function getUndefined(){
+        return  $this -> undefined  == 0 ?  '  '   : 'yes' ;
+    }
+
+
 }

@@ -6,9 +6,9 @@ use App\Models\Persone;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-
-class PersoneExport implements FromCollection, WithHeadings
+class PersoneExport implements FromCollection, WithHeadings , WithMapping
 {
 
 
@@ -23,11 +23,25 @@ class PersoneExport implements FromCollection, WithHeadings
             'phone',
             'email',
             'note',
-            'photo',
             'rekmaz',
             'doshtu',
             'undefined',
 
+        ];
+    }
+
+    public function map($lead):array{
+        return[
+
+            $lead->id,
+            $lead->first_name,
+            $lead->last_name,
+            $lead->phone,
+            $lead->email,
+            $lead->note,
+            $lead->getDoshtu(),
+            $lead->getRekmaz(),
+            $lead->getUndefined(),
         ];
     }
 

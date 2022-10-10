@@ -35,7 +35,7 @@ class InvestorController extends Controller
 
     public function create(InvestorRequest $request){
 
-        // try{
+        try{
 
             DB::beginTransaction();
 
@@ -86,11 +86,11 @@ class InvestorController extends Controller
 
             DB::commit();
             return redirect()->route('investor.index')->with(['toast_success'=>$msg]);
-        // }catch(Exception $ex){
+        }catch(Exception $ex){
 
-        //     DB::rollback();
-        //     return redirect()->route('investor.index')->with(['error' => $erroMsg]);
-        // }
+            DB::rollback();
+            return redirect()->route('investor.index')->with(['error' => $erroMsg]);
+        }
 
     }
 

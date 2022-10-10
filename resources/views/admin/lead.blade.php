@@ -59,6 +59,7 @@
                                     <th>Bussines Card</th>
                                     <th>Doshtu</th>
                                     <th>RekMaz</th>
+                                    <th>Undefined</th>
                                     <th>Note</th>
                                     <th>Action </th>
                                 </tr>
@@ -72,8 +73,9 @@
                                         <td>{{$persone->phone}}</td>
                                         <td>{{$persone->email}}</td>
                                         <td><img src="{{asset('assets/Image/'.$persone->photo) }}"style="height: 100px; width: 150px;"></td>
-                                        <td>{{$persone->getActive()}}</td>
-                                        <td>{{$persone->getActive1()}}</td>
+                                        <td>{{$persone->getDoshtu()}}</td>
+                                        <td>{{$persone->getRekmaz()}}</td>
+                                        <td>{{$persone->getundefined()}}</td>
                                         <td>{{$persone->note}}</td>
                                         <td><a href="{{route('admin.leads.delete',$persone->id)}}" class="btn btn-danger">Delete</a></td>
                                     </tr>
