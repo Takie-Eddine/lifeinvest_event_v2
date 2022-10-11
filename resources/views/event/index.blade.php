@@ -26,7 +26,7 @@
 						<div class="row no-gutters">
 							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
 								<div class="contact-wrap w-100 p-md-5 p-4">
-								    <img width="200px" src="{{asset('assets/Image/logo.png')}}" > 
+								    <img width="200px" src="{{asset('assets/Image/logo.png')}}" >
 									<!--<h3 class="mb-4">Get in touch</h3>-->
 									<br>
 										<br>
@@ -61,6 +61,15 @@
                                                     <span class="text-danger">{{$message }}</span>
                                                 @enderror
 											</div>
+                                            <div class="col-md-6">
+												<div class="form-group">
+													<label class="label" for="ofice_phone">Ofice Phone </label>
+													<input type="text" class="form-control" name="ofice_phone" id="ofice_phone" placeholder="Phone Number">
+												</div>
+                                                @error("ofice_phone")
+                                                    <span class="text-danger">{{$message }}</span>
+                                                @enderror
+											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="email">Email </label>
@@ -92,7 +101,7 @@
                                                     <span class="text-danger">{{$message }}</span>
                                                 @enderror
                                                 </div>
-                                                
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="email">Undefined </label>
@@ -102,7 +111,7 @@
                                                     <span class="text-danger">{{$message }}</span>
                                                 @enderror
                                                 </div>
-                                            
+
                                             </div>
 
                                             <div class="col-md-12">

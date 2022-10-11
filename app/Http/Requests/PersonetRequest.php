@@ -27,6 +27,7 @@ class PersonetRequest extends FormRequest
             'first_name'=> 'required|max:100',
             // 'last_name' => 'required|max:100',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:persones,phone',
+            'ofice_phone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|unique:persones,ofice_phone',
             'email' => 'nullable|email|unique:persones',
             'photo' => 'nullable',
             'photo.*' => 'mimes:jpg,jpeg,png',
