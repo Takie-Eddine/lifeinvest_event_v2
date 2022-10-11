@@ -59,7 +59,6 @@ class InvestorController extends Controller
                 'phone' =>$request->phone,
                 'country_id' =>$request->country,
                 'email' =>$request->email,
-                // 'city_id' =>$city->id,
                 'counter' =>$counter,
                 'doshtu' => $doshtu,
                 'rekmaz' => $rekmaz,

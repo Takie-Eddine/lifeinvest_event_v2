@@ -35,12 +35,12 @@ class InvestorRequest extends FormRequest
             'share_value' => 'required|exists:options,share_value',
             'share_number' => 'required',
             'investment_value' => 'required',
-            'policies' => 'required',
-'policies' => 'required',
+            //'policies' => 'required',
+            //'policies' => 'required',
             'project' => 'required|in:doshtu,rekmaz'
         ];
     }
-    
+
     public function messages(){
         return [
 
@@ -61,6 +61,6 @@ class InvestorRequest extends FormRequest
             'project.in' =>  __('request.project1'),
             ];
     }
-    
-   
+
+
 }

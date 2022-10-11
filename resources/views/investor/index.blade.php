@@ -135,7 +135,7 @@
                                     <h1 class="main-title">{{__('investor.text1')}}</h1>
                                 </div>
                                 <p class="animatt-middium">{{__('investor.text2')}}</p>
-                              
+
                                 <form  action="{{route('investor.create')}}" method="post"  class="form clearfix animatt-middium">
                                     @csrf
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
@@ -172,7 +172,7 @@
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
-                                    
+
                                     <div>
                                         <label for="">{{__('investor.choose project')}} </label>
                                         <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
@@ -224,11 +224,11 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-1">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="agree" type="checkbox" name="policies" tabindex="4" />
+                                            {{-- <input class="form-check-input" id="agree" type="checkbox" name="policies" tabindex="4" />
                                             <label class="form-check-label" for="register-privacy-policy">I agree to<a href="{{route('investor.policies')}}">&nbsp;privacy policy & terms</a></label>
                                             @error("policies")
                                             <span class="text-danger">{{$message }}</span>
-                                            @enderror
+                                            @enderror --}}
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
@@ -247,17 +247,17 @@
             </li>
             <li>
                 <!-- Start scroll bar -->
-                
+
                 <!-- End scroll bar -->
             </li>
             <li>
                 <!-- Start scroll bar -->
-                
+
                 <!-- End scroll bar -->
             </li>
             <li>
                 <!-- Start scroll bar -->
-                
+
                 <!-- End scroll bar -->
             </li>
         </ul>
