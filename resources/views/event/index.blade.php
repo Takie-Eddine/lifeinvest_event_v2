@@ -37,7 +37,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="name">First Name</label>
-													<input type="text" class="form-control" name="first_name" id="name" placeholder="First Name">
+													<input type="text" class="form-control" name="first_name" id="name" placeholder="First Name" value ="{{old('first_name')}}">
 												</div>
                                                 @error("first_name")
                                                     <span class="text-danger">{{$message }}</span>
@@ -46,7 +46,7 @@
                                             <div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="name">Last Name</label>
-													<input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name">
+													<input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name"value ="{{old('last_name')}}">
 												</div>
                                                 @error("last_name")
                                                     <span class="text-danger">{{$message }}</span>
@@ -55,7 +55,7 @@
                                             <div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="email">Phone Number </label>
-													<input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number">
+													<input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" value ="{{old('phone')}}">
 												</div>
                                                 @error("phone")
                                                     <span class="text-danger">{{$message }}</span>
@@ -64,7 +64,7 @@
                                             <div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="ofice_phone">Office Phone </label>
-													<input type="text" class="form-control" name="ofice_phone" id="ofice_phone" placeholder="Phone Number">
+													<input type="text" class="form-control" name="ofice_phone" id="ofice_phone" placeholder="Phone Number" value ="{{old('ofice_phone')}}">
 												</div>
                                                 @error("ofice_phone")
                                                     <span class="text-danger">{{$message }}</span>
@@ -73,7 +73,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="label" for="email">Email </label>
-													<input type="email" class="form-control" name="email" id="email" placeholder="email@email">
+													<input type="email" class="form-control" name="email" id="email" placeholder="email@email" value = "{{old('email')}}">
 												</div>
                                                 @error("email")
                                                     <span class="text-danger">{{$message }}</span>
@@ -86,7 +86,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="email">RekMaz </label>
-                                                        <input type="checkbox" class="form-control" name="rekmaz" id="rekmaz" >
+                                                        <input type="checkbox" class="form-control" name="rekmaz" id="rekmaz" value="on" {{ old('rekmaz') == 'on' ? 'checked' : '' }} >
                                                     </div>
                                                     @error("rekmaz")
                                                         <span class="text-danger">{{$message }}</span>
@@ -95,7 +95,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="email">Doshtu </label>
-                                                        <input type="checkbox" class="form-control" name="doshtu" id="doshtu">
+                                                        <input type="checkbox" class="form-control" name="doshtu" id="doshtu" value="on" {{ old('doshtu') == 'on' ? 'checked' : '' }}>
                                                     </div>
                                                         @error("doshtu")
                                                     <span class="text-danger">{{$message }}</span>
@@ -105,7 +105,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="email">Undefined </label>
-                                                        <input type="checkbox" class="form-control" name="undefined" id="undefined">
+                                                        <input type="checkbox" class="form-control" name="undefined" value="on" id="undefined" {{ old('undefined') == 'on' ? 'checked' : '' }}>
                                                     </div>
                                                         @error("undefined")
                                                     <span class="text-danger">{{$message }}</span>
@@ -127,7 +127,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label class="label" for="#">Message</label>
-													<textarea name="note" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
+													<textarea name="note" class="form-control" id="message" cols="30" rows="4" placeholder="Message">{{old('note')}}</textarea>
 												</div>
                                                 @error("note")
                                                     <span class="text-danger">{{$message }}</span>

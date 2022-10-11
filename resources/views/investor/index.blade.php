@@ -177,7 +177,7 @@
                                         <label for="">{{__('investor.choose project')}} </label>
                                         <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="online" type="radio" value="doshtu" name="project"  />
+                                                <input class="form-check-input" id="online" type="radio" value="doshtu" name="project"   {{ old('project') == 'doshtu' ? 'checked' : '' }}/>
                                                 <label class="form-check-label" for="register-privacy-policy">Doshtu</label>
                                                 @error("project")
                                                 <span class="text-danger">{{$message }}</span>
@@ -186,7 +186,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="presence" type="radio" value="rekmaz" name="project"  />
+                                                <input class="form-check-input" id="presence" type="radio" value="rekmaz" name="project"  {{ old('project') == 'rekmaz' ? 'checked' : '' }}/>
                                                 <label class="form-check-label" for="register-privacy-policy">Rekmaz</label>
                                                 @error("project")
                                                 <span class="text-danger">{{$message }}</span>

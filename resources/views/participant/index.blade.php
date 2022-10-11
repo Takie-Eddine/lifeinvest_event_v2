@@ -135,7 +135,7 @@
                                     <h1 class="main-title">{{__('participant.text1')}}</h1>
                                 </div>
                                 <p class="animatt-middium">{{__('participant.text2')}}</p>
-                             
+
                                 <form  action="{{route('participant.create')}}" method="post"  class="form clearfix animatt-middium">
                                     @csrf
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
@@ -183,7 +183,7 @@
                                     </div> --}}
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-1">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="online" type="radio" value="online" name="participation"  />
+                                            <input class="form-check-input" id="online" type="radio" value="online" name="participation" {{ old('participation') == 'online' ? 'checked' : '' }} />
                                             <label class="form-check-label" for="register-privacy-policy">Online</label>
                                             @error("participation")
                                             <span class="text-danger">{{$message }}</span>
@@ -192,7 +192,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-1">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="presence" type="radio" value="presence" name="participation"  />
+                                            <input class="form-check-input" id="presence" type="radio" value="presence" name="participation" {{ old('participation') == 'presence' ? 'checked' : '' }} />
                                             <label class="form-check-label" for="register-privacy-policy">Presence</label>
                                             @error("participation")
                                             <span class="text-danger">{{$message }}</span>
@@ -215,17 +215,17 @@
             </li>
             <li>
                 <!-- Start scroll bar -->
-                
+
                 <!-- End scroll bar -->
             </li>
             <li>
                 <!-- Start scroll bar -->
-                
+
                 <!-- End scroll bar -->
             </li>
             <li>
                 <!-- Start scroll bar -->
-                
+
                 <!-- End scroll bar -->
             </li>
         </ul>
