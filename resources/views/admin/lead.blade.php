@@ -55,6 +55,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Phone Number</th>
+                                    <th>Office Phone </th>
                                     <th>Email</th>
                                     <th>Bussines Card</th>
                                     <th>Doshtu</th>
@@ -71,6 +72,7 @@
                                         <td>{{$persone->first_name}}</td>
                                         <td>{{$persone->last_name}}</td>
                                         <td>{{$persone->phone}}</td>
+                                        <td>{{$persone->ofice_phone}}</td>
                                         <td>{{$persone->email}}</td>
                                         <td><img src="{{asset('assets/Image/'.$persone->photo) }}"style="height: 100px; width: 150px;"></td>
                                         <td>{{$persone->getDoshtu()}}</td>

@@ -21,6 +21,7 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
             'first_name',
             'last_name',
             'phone',
+            'office_phone',
             'email',
             'note',
             'rekmaz',
@@ -37,6 +38,7 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
             $lead->first_name,
             $lead->last_name,
             $lead->phone,
+            $lead->ofice_phone,
             $lead->email,
             $lead->note,
             $lead->getDoshtu(),
@@ -50,6 +52,6 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
     */
     public function collection()
     {
-        return Persone::select('id','first_name','last_name','phone','email','note','rekmaz','doshtu','undefined')->get();
+        return Persone::select('id','first_name','last_name','phone','ofice_phone','email','note','rekmaz','doshtu','undefined')->get();
     }
 }
