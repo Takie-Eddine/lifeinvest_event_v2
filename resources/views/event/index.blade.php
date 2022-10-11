@@ -63,7 +63,7 @@
 											</div>
                                             <div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="ofice_phone">Ofice Phone </label>
+													<label class="label" for="ofice_phone">Office Phone </label>
 													<input type="text" class="form-control" name="ofice_phone" id="ofice_phone" placeholder="Phone Number">
 												</div>
                                                 @error("ofice_phone")
