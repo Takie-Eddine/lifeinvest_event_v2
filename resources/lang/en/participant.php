@@ -35,7 +35,7 @@ return [
     'text12'=>'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odi',
     'text13'=>'Lorem ipsum dolor',
     'text14'=>'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odi',
-    'first nfame' => 'First Name',
+    'first name' => 'First Name',
     'last name' => 'Last Name',
     'phone' => 'Phone Number',
     'country' => 'Country',
@@ -45,13 +45,13 @@ return [
     'min' => 'min' ,
     'invesment value' => 'Invesment Value',
     'send' => 'Send',
-    
-    
+
+
     'heading'=>'We help capital flow, protect investors and safeguard assets',
     'heading2'=>'WE WORK SEAMLESSLY WITH OUR INVESTORS FOR THE LONG-TERM',
     'about_desc'=>'LIFENVST is a venture capital firm that invests early in founders building fast-growing technology companies. We focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.',
     'about_slogan'=>'Reliable, Sustainable, and Transparent Investment.',
-    
+
     'services-1'=>'1. Detect the market gap and find a solution.',
     'services-2'=>'2. Project financial studies.',
     'services-3'=>'3. Launching the project and offering it for investment.',
@@ -72,5 +72,10 @@ return [
     'full name'=>'Full name',
     'text18' => 'Register your details to get the subscription number to get your gift
     To know the winners, please be present today at booth No  at 5 pm',
+
+
+    'online' => 'Online' ,
+
+    'presence' => 'Presence',
 
 ];

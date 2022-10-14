@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Partic;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -25,6 +26,6 @@ class ParticExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Partic::select('id','full_name','phone_number')->get();
+        return Partic::select('id','full_name','phone_number')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
     }
 }

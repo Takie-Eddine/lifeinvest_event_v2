@@ -35,55 +35,84 @@
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item">Leads</li>
+                <li class="breadcrumb-item">Dour Al-Nashr</li>
                 <li class="breadcrumb-item"><a href="#">Index</a></li>
             </ul>
         </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
-                        <h3 class="tile-title">Leads</h3>
-                        <a class="btn btn-primary" href="{{route('admin.leads.exportods')}}">Export(.ods)</a>
-                        <a class="btn btn-primary" href="{{route('admin.leads.exportcls')}}">Export(.csv)</a>
-                        <a class="btn btn-primary" href="{{route('admin.leads.exportxls')}}">Export(.xls)</a>
+                        <h3 class="tile-title">Add Permissions</h3>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <h3>Error Occured!</h3>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="tile-body">
+                            @include('admin.alerts.errors')
+                            @include('admin.alerts.success')
+                                <form action="{{route('admin.permission.store')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+
+                                <div class="form-group">
+                                    <label class="control-label">Name</label>
+                                    <input class="form-control" type="text" placeholder="Enter Name" name="name" value="{{old('name')}}">
+                                </div>
+                                <div class="row">
+                                    @foreach (config('global.permissions') as $name => $value)
+                                        <div class="form-group col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" class="chk-box" name="permissions[]" value="{{ $name }}">  {{ $value }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="tile-footer">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;
+                                    {{-- <a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a> --}}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="tile">
+                        <h3 class="tile-title">Permissions</h3>
+                        {{-- <a class="btn btn-primary" href="{{route('admin.dar-al-nashr.exportods')}}">Export(.ods)</a>
+                        <a class="btn btn-primary" href="{{route('admin.dar-al-nashr.exportcls')}}">Export(.csv)</a>
+                        <a class="btn btn-primary" href="{{route('admin.dar-al-nashr.exportxls')}}">Export(.xls)</a> --}}
                         <br>
                         <br>
-                        <table class="table table-hover table-bordered" id="sampleTable2">
+                        <table class="table table-hover table-bordered" id="sampleTable4">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Phone Number</th>
-                                    <th>Office Phone </th>
-                                    <th>Email</th>
-                                    <th>Bussines Card</th>
-                                    <th>Added By</th>
-                                    <th>Doshtu</th>
-                                    <th>RekMaz</th>
-                                    <th>Undefined</th>
-                                    <th>Note</th>
+                                    <th>Name</th>
                                     <th>Action </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($persones as $persone)
-                                    <tr>
-                                        <td>{{$persone->id}}</td>
-                                        <td>{{$persone->first_name}}</td>
-                                        <td>{{$persone->last_name}}</td>
-                                        <td>{{$persone->phone}}</td>
-                                        <td>{{$persone->ofice_phone}}</td>
-                                        <td>{{$persone->email}}</td>
-                                        <td><img src="{{asset('assets/Image/'.$persone->photo) }}"style="height: 100px; width: 150px;"></td>
-                                        <td>{{$persone->employe}}</td>
-                                        <td>{{$persone->getDoshtu()}}</td>
-                                        <td>{{$persone->getRekmaz()}}</td>
-                                        <td>{{$persone->getundefined()}}</td>
-                                        <td>{{$persone->note}}</td>
-                                        <td><a href="{{route('admin.leads.delete',$persone->id)}}" class="btn btn-danger">Delete</a></td>
-                                    </tr>
-                                @endforeach
+                                @isset($roles)
+                                    @foreach($roles as $role)
+                                        <tr>
+                                            <td>{{$role -> name}}</td>
+                                            <td>
+                                                @foreach($role -> permissions as $permission)
+                                                    {{$permission}} ,
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <a href="{{route('admin.permission.delete',$role->id)}}" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                                @endforeach
+                                @endisset
+
                             </tbody>
                         </table>
                     </div>

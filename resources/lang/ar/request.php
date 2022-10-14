@@ -13,7 +13,7 @@ return [
     |
     */
 
-'first name' => 'الاسم الأول مطلوب',
+    'first name' => 'الاسم الأول مطلوب',
     'last name' => 'الاسم الأول طويل',
     'first name1' => 'الاسم الأخير مطلوب',
     'last name1' => 'الاسم الأخير طويل',
@@ -29,7 +29,7 @@ return [
     ',
     'project1' => 'المشروع المحدد غير صالح.
     ',
-    'project' => 'The project is required.',
-    'project1' => 'The selected project is invalid.',
+
+    'participation'=> 'المشاركة مطلوبة',
+
     ];
-    

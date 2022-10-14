@@ -184,7 +184,7 @@
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-1">
                                         <div class="form-check">
                                             <input class="form-check-input" id="online" type="radio" value="online" name="participation" {{ old('participation') == 'online' ? 'checked' : '' }} />
-                                            <label class="form-check-label" for="register-privacy-policy">Online</label>
+                                            <label class="form-check-label" for="register-privacy-policy">{{__('participant.online')}}</label>
                                             @error("participation")
                                             <span class="text-danger">{{$message }}</span>
                                             @enderror
@@ -193,7 +193,7 @@
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-1">
                                         <div class="form-check">
                                             <input class="form-check-input" id="presence" type="radio" value="presence" name="participation" {{ old('participation') == 'presence' ? 'checked' : '' }} />
-                                            <label class="form-check-label" for="register-privacy-policy">Presence</label>
+                                            <label class="form-check-label" for="register-privacy-policy">{{__('participant.presence')}}</label>
                                             @error("participation")
                                             <span class="text-danger">{{$message }}</span>
                                             @enderror

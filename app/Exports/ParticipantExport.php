@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\participant;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -50,6 +51,6 @@ class ParticipantExport implements  WithHeadings ,FromQuery , WithMapping
     */
     public function collection()
     {
-        return participant::select('id','first_name','last_name','phone','email','participation','country')->get();
+        return participant::select('id','first_name','last_name','phone','email','participation','country')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
     }
 }

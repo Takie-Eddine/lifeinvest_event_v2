@@ -19,7 +19,6 @@ class LeadController extends Controller
     }
 
 
-
     public function delete($id){
         $investor = Persone::find($id);
         //$participant = participant::find($id);

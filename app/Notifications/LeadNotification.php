@@ -69,6 +69,7 @@ class LeadNotification extends Notification
             'title' => 'New Lead',
             'first_name' => $this->persone->first_name ,
             'last_name' => $this->persone->last_name,
+            'added_by' => $this->persone->employe,
         ];
     }
 }

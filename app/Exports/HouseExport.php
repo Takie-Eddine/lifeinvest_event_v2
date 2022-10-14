@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\House;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -23,6 +24,6 @@ class HouseExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return House::select('id','name','wing')->get();
+        return House::select('id','name','wing')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
     }
 }

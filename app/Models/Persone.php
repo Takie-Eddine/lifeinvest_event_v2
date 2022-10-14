@@ -37,4 +37,10 @@ class Persone extends Model
     }
 
 
+
+    public function employes(){
+
+        return $this->hasOne(Employe::class);
+    }
+
 }

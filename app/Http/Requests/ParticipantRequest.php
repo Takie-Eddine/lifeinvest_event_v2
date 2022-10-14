@@ -28,13 +28,13 @@ class ParticipantRequest extends FormRequest
             'last_name' => 'required|max:100',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:participants,phone,'.$this -> id,
             //'company_name' => 'required|max:100',
-            'email'=>'required|email',
+            'email'=>'required|email|unique:participants,email',
             'country' => 'required|exists:countries,id',
             'participation' =>'required|in:online,presence',
             // 'policies' => 'required',
         ];
     }
-    
+
     public function messages(){
         return [
 
@@ -47,6 +47,7 @@ class ParticipantRequest extends FormRequest
             'country.required' => __('request.country'),
             'city.required' => __('request.city'),
             'policies.required' =>  __('request.policies'),
+            'participation.required' => __('request.participation'),
             ];
     }
 }

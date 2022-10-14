@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ParticipantController  ;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +33,7 @@ use App\Http\Controllers\Admin\ParticipantController  ;
 
     Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'admin'],function(){
 
-        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'participant'],function(){
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:participant', 'prefix' => 'participant'],function(){
             Route::get('/' , [ParticipantController::class , 'index'])->name('admin.participant.index');
             Route::get('/deleteparticipant/{id}' , [ParticipantController::class , 'delete'])->name('admin.participant.delete');
             Route::get('/export' , [ParticipantController::class , 'exportods'])->name('admin.participant.exportods');
@@ -39,7 +42,7 @@ use App\Http\Controllers\Admin\ParticipantController  ;
         });
 
 
-        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'investor'],function(){
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:investor', 'prefix' => 'investor'],function(){
             Route::get('/' , [InvestorController::class , 'index'])->name('admin.investor.index');
             Route::get('/deleteinvestor/{id}' , [InvestorController::class , 'delete'])->name('admin.investor.delete');
             Route::post('/update/{id}' , [InvestorController::class , 'edit'])->name('admin.investor.edit');
@@ -49,7 +52,7 @@ use App\Http\Controllers\Admin\ParticipantController  ;
         });
 
 
-        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'winner'],function(){
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:winner', 'prefix' => 'winner'],function(){
             Route::get('/' , [EventBookController::class , 'index'])->name('admin.winner.index');
             Route::get('/delete/{id}' , [EventBookController::class , 'delete'])->name('admin.winner.delete');
             Route::get('/export' , [EventBookController::class , 'exportods'])->name('admin.winner.exportods');
@@ -58,7 +61,7 @@ use App\Http\Controllers\Admin\ParticipantController  ;
 
         });
 
-        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'leads'],function(){
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:leads', 'prefix' => 'leads'],function(){
             Route::get('/' , [LeadController::class , 'index'])->name('admin.leads.index');
             Route::get('/delete/{id}' , [LeadController::class , 'delete'])->name('admin.leads.delete');
             Route::get('/export' , [LeadController::class , 'exportods'])->name('admin.leads.exportods');
@@ -67,7 +70,7 @@ use App\Http\Controllers\Admin\ParticipantController  ;
 
         });
 
-        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'dar-al-nashr'],function(){
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:dar-al-nashr', 'prefix' => 'dar-al-nashr'],function(){
             Route::get('/' , [DarAlNashrController::class , 'index'])->name('admin.dar-al-nashr.index');
             Route::post('/store' , [DarAlNashrController::class , 'store'])->name('admin.dar-al-nashr.store');
             Route::get('/delete/{id}' , [DarAlNashrController::class , 'delete'])->name('admin.dar-al-nashr.delete');
@@ -78,9 +81,30 @@ use App\Http\Controllers\Admin\ParticipantController  ;
         });
 
 
-        Route::get('notification', [NotificationController::class, 'index'])->name('admin.notification');
-        Route::get('notification/read', [NotificationController::class, 'read'])->name('admin.notification.read');
 
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:notification', 'prefix' => 'notification'],function(){
+            Route::get('/', [NotificationController::class, 'index'])->name('admin.notification');
+            Route::get('/read', [NotificationController::class, 'read'])->name('admin.notification.read');
+        });
+
+
+
+
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:users', 'prefix' => 'users'],function(){
+            Route::get('/' , [UserController::class , 'index'])->name('admin.users.index');
+            Route::get('/create' , [UserController::class , 'create'])->name('admin.users.create');
+            Route::post('/store' , [UserController::class , 'store'])->name('admin.users.store');
+            Route::get('/edit/{id}' , [UserController::class , 'edit'])->name('admin.users.edit');
+            Route::get('/update/{id}' , [UserController::class , 'update'])->name('admin.users.update');
+            Route::get('/delete/{id}' , [UserController::class , 'delete'])->name('admin.users.delete');
+        });
+
+
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:permission', 'prefix' => 'permission'],function(){
+            Route::get('/' , [PermissionController::class , 'index'])->name('admin.permission.index');
+            Route::post('/store' , [PermissionController::class , 'store'])->name('admin.permission.store');
+            Route::get('/delete/{id}' , [PermissionController::class , 'delete'])->name('admin.permission.delete');
+        });
 
 
         Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');

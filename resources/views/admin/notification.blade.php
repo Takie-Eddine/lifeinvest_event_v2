@@ -51,13 +51,14 @@
 
                             <div class="row">
                                 <div class="col-12 table-responsive">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" id="sampleTable">
                                     <thead>
                                         <tr>
                                         <th>ID</th>
                                         <th>Title</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>Added By</th>
                                         <th>Created At</th>
                                         </tr>
                                     </thead>
@@ -68,6 +69,7 @@
                                                 <td>{{$notification->data['title']}}</td>
                                                 <td>{{$notification->data['first_name']}}</td>
                                                 <td>{{$notification->data['last_name']}}</td>
+                                                <td>{{$notification->data['added_by'] ?? '__'}}</td>
                                                 <td>{{$notification->created_at}}</td>
                                             </tr>
                                         @endforeach

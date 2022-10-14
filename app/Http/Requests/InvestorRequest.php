@@ -31,7 +31,7 @@ class InvestorRequest extends FormRequest
             //'company_name' => 'required|max:100',
             'country' => 'required|exists:countries,id',
             // 'city' => 'required',
-            'email'=>'required|email',
+            'email'=>'required|email|unique:investors,email',
             'share_value' => 'required|exists:options,share_value',
             'share_number' => 'required',
             'investment_value' => 'required',

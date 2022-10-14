@@ -14,7 +14,7 @@
 
 return [
 
-'first name' => 'The first name is required',
+    'first name' => 'The first name is required',
     'last name' => 'The first name is to long',
     'first name1' => 'The last name is required',
     'last name1' => 'The last name is to long',
@@ -26,4 +26,8 @@ return [
     'share number' => 'Share number is required',
     'investment value' => 'Investment value is required that is mean you are messing with the settings ',
     'policies' => 'You have to read and accept the terms and condition',
+
+    'participation' => 'participation is required',
+    'project' => 'The project is required.',
+    'project1' => 'The selected project is invalid.',
     ];

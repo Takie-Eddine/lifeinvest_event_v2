@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Investor;
 use App\Models\Share;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -47,6 +48,6 @@ class InvestorExport implements FromQuery, WithHeadings ,WithMapping
     */
     public function collection()
     {
-        return Investor::select('id','first_name','last_name','phone','doshtu','rekmaz');
+        return Investor::select('id','first_name','last_name','phone','doshtu','rekmaz')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
     }
 }

@@ -79,6 +79,22 @@
                                                     <span class="text-danger">{{$message }}</span>
                                                 @enderror
 											</div>
+                                            <div class="col-md-6">
+												<div class="form-group">
+													<label class="label" for="employe">By </label>
+                                                    <select class="form-control" name="employe" id="">
+                                                        <option value="">Choose</option>
+                                                        @isset($employes)
+                                                            @foreach ($employes as $employe)
+                                                                <option value="{{$employe->username}}">{{$employe->username}}</option>
+                                                            @endforeach
+                                                        @endisset
+                                                    </select>
+												</div>
+                                                @error("employe")
+                                                    <span class="text-danger">{{$message }}</span>
+                                                @enderror
+											</div>
                                             <div class="col-md-12">
                                                 <span>Project Intersted:</span>
                                             </div>

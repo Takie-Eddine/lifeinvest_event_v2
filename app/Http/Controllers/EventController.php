@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonetRequest;
 use App\Models\Admin;
+use App\Models\Employe;
 use App\Models\Persone;
 use App\Notifications\LeadNotification;
 use Exception;
@@ -17,8 +18,8 @@ class EventController extends Controller
 
     public function index(){
 
-
-        return view('event.index');
+        $employes = Employe::all();
+        return view('event.index',compact('employes'));
 
     }
 
@@ -66,6 +67,7 @@ class EventController extends Controller
             'rekmaz' =>$request->rekmaz,
             'undefined' =>$request->undefined,
             'note' => $request->note,
+            'employe'=>$request->employe,
         ]);
 
 
