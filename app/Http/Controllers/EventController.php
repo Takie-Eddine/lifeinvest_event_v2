@@ -68,6 +68,7 @@ class EventController extends Controller
             'undefined' =>$request->undefined,
             'note' => $request->note,
             'employe'=>$request->employe,
+            'website' =>$request->website,
         ]);
 
 

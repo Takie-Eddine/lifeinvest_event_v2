@@ -81,6 +81,15 @@
 											</div>
                                             <div class="col-md-6">
 												<div class="form-group">
+													<label class="label" for="website">Website </label>
+													<input type="text" class="form-control" name="website" id="website" placeholder="" value = "{{old('website')}}">
+												</div>
+                                                @error("website")
+                                                    <span class="text-danger">{{$message }}</span>
+                                                @enderror
+											</div>
+                                            <div class="col-md-6">
+												<div class="form-group">
 													<label class="label" for="employe">By* </label>
                                                     <select class="form-control" name="employe" id="">
                                                         <option value="">Choose</option>

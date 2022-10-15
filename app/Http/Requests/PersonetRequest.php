@@ -35,6 +35,7 @@ class PersonetRequest extends FormRequest
             'rekmaz'=> 'required_without_all:doshtu,undefined',
             'undefined'=> 'required_without_all:doshtu,rekmaz',
             'employe' => 'required',
+            'website' => 'nullable',
 
         ];
     }
