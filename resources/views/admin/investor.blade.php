@@ -103,9 +103,24 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <h3 class="tile-title">Investors</h3>
-                        <a class="btn btn-primary" href="{{route('admin.investor.exportods')}}">Export(.ods)</a>
+
+                        <form action="{{route('admin.investor.exportods')}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label class="control-label">From</label>
+                                <input type="date" class="form-control " name="started">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">To</label>
+                                <input type="date" class="form-control " name="endded">
+                            </div>
+                            <div class="tile-footer">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Export(.ods)</button>&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </form>
+                        {{-- <a class="btn btn-primary" href="{{route('admin.investor.exportods')}}">Export(.ods)</a>
                         <a class="btn btn-primary" href="{{route('admin.investor.exportcls')}}">Export(.csv)</a>
-                        <a class="btn btn-primary" href="{{route('admin.investor.exportxls')}}">Export(.xls)</a>
+                        <a class="btn btn-primary" href="{{route('admin.investor.exportxls')}}">Export(.xls)</a> --}}
                         <br>
                         <br>
 

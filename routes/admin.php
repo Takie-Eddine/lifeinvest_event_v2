@@ -36,9 +36,9 @@ use App\Http\Controllers\Admin\UserController;
         Route::group(['namespace' => 'Admin', 'middleware' => 'can:participant', 'prefix' => 'participant'],function(){
             Route::get('/' , [ParticipantController::class , 'index'])->name('admin.participant.index');
             Route::get('/deleteparticipant/{id}' , [ParticipantController::class , 'delete'])->name('admin.participant.delete');
-            Route::get('/export' , [ParticipantController::class , 'exportods'])->name('admin.participant.exportods');
-            Route::get('/export1' , [ParticipantController::class , 'exportcls'])->name('admin.participant.exportcls');
-            Route::get('/export2' , [ParticipantController::class , 'exportxls'])->name('admin.participant.exportxls');
+            Route::post('/export' , [ParticipantController::class , 'exportods'])->name('admin.participant.exportods');
+            // Route::get('/export1' , [ParticipantController::class , 'exportcls'])->name('admin.participant.exportcls');
+            // Route::get('/export2' , [ParticipantController::class , 'exportxls'])->name('admin.participant.exportxls');
         });
 
 
@@ -46,9 +46,9 @@ use App\Http\Controllers\Admin\UserController;
             Route::get('/' , [InvestorController::class , 'index'])->name('admin.investor.index');
             Route::get('/deleteinvestor/{id}' , [InvestorController::class , 'delete'])->name('admin.investor.delete');
             Route::post('/update/{id}' , [InvestorController::class , 'edit'])->name('admin.investor.edit');
-            Route::get('/export' , [InvestorController::class , 'exportods'])->name('admin.investor.exportods');
-            Route::get('/export1' , [InvestorController::class , 'exportcls'])->name('admin.investor.exportcls');
-            Route::get('/export2' , [InvestorController::class , 'exportxls'])->name('admin.investor.exportxls');
+            Route::post('/export' , [InvestorController::class , 'exportods'])->name('admin.investor.exportods');
+            // Route::get('/export1' , [InvestorController::class , 'exportcls'])->name('admin.investor.exportcls');
+            // Route::get('/export2' , [InvestorController::class , 'exportxls'])->name('admin.investor.exportxls');
         });
 
 
@@ -64,9 +64,9 @@ use App\Http\Controllers\Admin\UserController;
         Route::group(['namespace' => 'Admin', 'middleware' => 'can:leads', 'prefix' => 'leads'],function(){
             Route::get('/' , [LeadController::class , 'index'])->name('admin.leads.index');
             Route::get('/delete/{id}' , [LeadController::class , 'delete'])->name('admin.leads.delete');
-            Route::get('/export' , [LeadController::class , 'exportods'])->name('admin.leads.exportods');
-            Route::get('/export1' , [LeadController::class , 'exportcls'])->name('admin.leads.exportcls');
-            Route::get('/export2' , [LeadController::class , 'exportxls'])->name('admin.leads.exportxls');
+            Route::post('/export' , [LeadController::class , 'exportods'])->name('admin.leads.exportods');
+            Route::post('/export1' , [LeadController::class , 'exportcls'])->name('admin.leads.exportcls');
+            Route::post('/export2' , [LeadController::class , 'exportxls'])->name('admin.leads.exportxls');
 
         });
 

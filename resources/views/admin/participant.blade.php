@@ -43,9 +43,25 @@
                 <div class="col-md-10">
                     <div class="tile">
                         <h3 class="tile-title">Participants</h3>
-                        <a class="btn btn-primary" href="{{route('admin.participant.exportods')}}">Export(.ods)</a>
+
+
+                        <form action="{{route('admin.participant.exportods')}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label class="control-label">From</label>
+                                <input type="date" class="form-control inpust-sm" name="started">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">To</label>
+                                <input type="date" class="form-control inpust-sm" name="endded">
+                            </div>
+                            <div class="tile-footer">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Export(.ods)</button>&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </form>
+                        {{-- <a class="btn btn-primary" href="{{route('admin.participant.exportods')}}">Export(.ods)</a>
                         <a class="btn btn-primary" href="{{route('admin.participant.exportcls')}}">Export(.csv)</a>
-                        <a class="btn btn-primary" href="{{route('admin.participant.exportxls')}}">Export(.xls)</a>
+                        <a class="btn btn-primary" href="{{route('admin.participant.exportxls')}}">Export(.xls)</a> --}}
                         <br>
                         <br>
                         <table class="table table-hover table-bordered" id="sampleTable">

@@ -11,6 +11,16 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class ParticipantExport implements  WithHeadings ,FromQuery , WithMapping
 {
+    public $started;
+    public $endded;
+
+    public function __construct( $started , $endded)
+    {
+        $this->started = $started;
+        $this->endded = $endded;
+    }
+
+
 
     public function query()
     {
@@ -51,6 +61,6 @@ class ParticipantExport implements  WithHeadings ,FromQuery , WithMapping
     */
     public function collection()
     {
-        return participant::select('id','first_name','last_name','phone','email','participation','country')->get();
+        return participant::select('id','first_name','last_name','phone','email','participation','country')->where('created_at','>=', $this->started)->where('created_at' , '<=' ,$this->endded)->get();
     }
 }

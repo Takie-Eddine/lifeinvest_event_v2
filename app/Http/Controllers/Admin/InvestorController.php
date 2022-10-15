@@ -8,6 +8,7 @@ use App\Models\Option;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\InvestorExport;
+use Carbon\Carbon;
 
 class InvestorController extends Controller
 {
@@ -59,23 +60,25 @@ class InvestorController extends Controller
         $investor->delete();
         return redirect()->back()->with(['toast_success'=>'Deleted with success']);
     }
-    
-    
-    public function exportods(){
 
 
-        return Excel::download(new InvestorExport,'investor.ods');
+    public function exportods(Request $request){
+
+        $from = Carbon::parse($request->started)->toDateTimeString();
+        $to = Carbon::parse( $request->endded)->toDateTimeString();
+
+        return Excel::download(new InvestorExport(Carbon::parse($request->started)->toDateTimeString(),Carbon::parse( $request->endded)->toDateTimeString()),'investor.ods');
     }
 
-    public function exportxls(){
+    // public function exportxls(){
 
 
-        return Excel::download(new InvestorExport,'investor.xls');
-    }
+    //     return Excel::download(new InvestorExport,'investor.xls');
+    // }
 
-    public function exportcls(){
+    // public function exportcls(){
 
 
-        return Excel::download(new InvestorExport,'investor.csv');
-    }
+    //     return Excel::download(new InvestorExport,'investor.csv');
+    // }
 }

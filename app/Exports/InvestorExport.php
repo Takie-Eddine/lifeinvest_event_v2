@@ -12,6 +12,18 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class InvestorExport implements FromQuery, WithHeadings ,WithMapping
 {
+
+    protected $started ;
+    protected $endded ;
+
+    public function __construct($started , $endded)
+    {
+        $this -> started= $started;
+        $this -> endded= $endded;
+    }
+
+
+
     public function query(){
         return Investor::query()->with('shares');
     }
@@ -48,6 +60,6 @@ class InvestorExport implements FromQuery, WithHeadings ,WithMapping
     */
     public function collection()
     {
-        return Investor::select('id','first_name','last_name','phone','doshtu','rekmaz')->get();
+        return Investor::select('id','first_name','last_name','phone','doshtu','rekmaz')->where('created_at','>=', $this->started)->where('created_at' , '<=' ,$this->endded)->get();
     }
 }

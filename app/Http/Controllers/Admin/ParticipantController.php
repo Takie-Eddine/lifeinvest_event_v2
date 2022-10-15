@@ -7,6 +7,7 @@ use App\Models\participant;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ParticipantExport;
+use Carbon\Carbon;
 
 class ParticipantController extends Controller
 {
@@ -28,22 +29,22 @@ class ParticipantController extends Controller
         return redirect()->back()->with(['toast_success'=>'Deleted with success']);
 
     }
-    
-    public function exportods(){
+
+    public function exportods(Request $request){
 
 
-        return Excel::download(new ParticipantExport,'participant.ods');
+        return Excel::download(new ParticipantExport(Carbon::parse($request->started)->toDateTimeString(),Carbon::parse( $request->endded)->toDateTimeString()),'participant.ods');
     }
 
-    public function exportxls(){
+    // public function exportxls(){
 
 
-        return Excel::download(new ParticipantExport,'participant.xls');
-    }
+    //     return Excel::download(new ParticipantExport,'participant.xls');
+    // }
 
-    public function exportcls(){
+    // public function exportcls(){
 
 
-        return Excel::download(new ParticipantExport,'participant.csv');
-    }
+    //     return Excel::download(new ParticipantExport,'participant.csv');
+    // }
 }

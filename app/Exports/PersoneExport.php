@@ -11,7 +11,14 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class PersoneExport implements FromCollection, WithHeadings , WithMapping
 {
 
+    public $started;
+    public $endded;
 
+    public function __construct( $started , $endded)
+    {
+        $this->started = $started;
+        $this->endded = $endded;
+    }
 
 
     public function headings(): array
@@ -54,6 +61,6 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
     */
     public function collection()
     {
-        return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->get();
+        return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('created_at','>=', $this->started)->where('created_at' , '<=' ,$this->endded)->get();
     }
 }
