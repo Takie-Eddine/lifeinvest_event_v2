@@ -36,7 +36,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="name">First Name</label>
+													<label class="label" for="name">First Name*</label>
 													<input type="text" class="form-control" name="first_name" id="name" placeholder="First Name" value ="{{old('first_name')}}">
 												</div>
                                                 @error("first_name")
@@ -54,7 +54,7 @@
 											</div>
                                             <div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="email">Phone Number </label>
+													<label class="label" for="email">Phone Number* </label>
 													<input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" value ="{{old('phone')}}">
 												</div>
                                                 @error("phone")
@@ -81,7 +81,7 @@
 											</div>
                                             <div class="col-md-6">
 												<div class="form-group">
-													<label class="label" for="employe">By </label>
+													<label class="label" for="employe">By* </label>
                                                     <select class="form-control" name="employe" id="">
                                                         <option value="">Choose</option>
                                                         @isset($employes)

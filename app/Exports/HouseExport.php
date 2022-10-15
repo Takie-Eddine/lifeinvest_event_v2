@@ -24,6 +24,6 @@ class HouseExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return House::select('id','name','wing')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        return House::select('id','name','wing')->get();
     }
 }

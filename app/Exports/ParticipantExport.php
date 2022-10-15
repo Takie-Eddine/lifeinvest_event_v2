@@ -51,6 +51,6 @@ class ParticipantExport implements  WithHeadings ,FromQuery , WithMapping
     */
     public function collection()
     {
-        return participant::select('id','first_name','last_name','phone','email','participation','country')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        return participant::select('id','first_name','last_name','phone','email','participation','country')->get();
     }
 }

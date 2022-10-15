@@ -48,6 +48,6 @@ class InvestorExport implements FromQuery, WithHeadings ,WithMapping
     */
     public function collection()
     {
-        return Investor::select('id','first_name','last_name','phone','doshtu','rekmaz')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        return Investor::select('id','first_name','last_name','phone','doshtu','rekmaz')->get();
     }
 }

@@ -20,7 +20,7 @@ class ParticipantController extends Controller
     public function index(){
 
         $data['countries'] = Country::all();
-        $data['participants'] = participant::all()->count();
+        $data['participants'] = participant::all()->count()+42;
         return view('participant.index',$data);
 
     }

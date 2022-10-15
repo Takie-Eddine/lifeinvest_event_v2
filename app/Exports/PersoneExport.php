@@ -54,6 +54,6 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
     */
     public function collection()
     {
-        return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->get();
     }
 }

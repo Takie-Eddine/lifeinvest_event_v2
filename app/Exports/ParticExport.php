@@ -26,6 +26,6 @@ class ParticExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Partic::select('id','full_name','phone_number')->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        return Partic::select('id','full_name','phone_number')->get();
     }
 }
