@@ -23,7 +23,6 @@ class LeadController extends Controller
         switch($request->input('action')){
 
             case 'filter';
-                //return $request;
                 $data['persones'] = Persone::filter($request->query())->get();
             break;
 
@@ -54,6 +53,10 @@ class LeadController extends Controller
                 $from =  $request->date_started;
                 $to = $request->date_endded ;
 
+            }
+
+            if (!$request->employe) {
+                $request->employe = null ;
             }
 
 
@@ -148,9 +151,52 @@ class LeadController extends Controller
 
     public function trash(){
 
-        $persones = Persone::onlyTrashed()->get();
 
-        return view('admin.trash',compact('persones'));
+        $request = request();
+        $data['employes'] = Employe::all();
+        $data['persones'] = Persone::onlyTrashed()->filter($request->query())->get();
+
+        switch($request->input('action')){
+
+            case 'filter';
+                $data['persones'] = Persone::onlyTrashed()->filter($request->query())->get();
+            break;
+
+            case 'export';
+            $data['persones'] = Persone::onlyTrashed()->filter($request->query())->get();
+
+            if ($request->date_started &&  $request->date_endded ) {
+                $from =  Carbon::parse($request->date_started)->toDateTimeString();
+                $to = Carbon::parse( $request->date_endded)->toDateTimeString();
+
+
+            }
+
+            if ($request->date_started && !$request->date_endded) {
+                $from =  Carbon::parse($request->date_started)->toDateTimeString();
+                $to = $request->date_endded ;
+
+            }
+
+
+            if (!$request->date_started && $request->date_endded) {
+                $from =  $request->date_started;
+                $to = Carbon::parse($request->date_endded)->toDateTimeString() ;
+
+            }
+
+            if (!$request->date_started && !$request->date_endded) {
+                $from =  $request->date_started;
+                $to = $request->date_endded ;
+
+            }
+
+            return Excel::download(new PersoneExport($from,$to, $request->employe ),'leads.ods');
+            break;
+
+        };
+
+        return view('admin.trash',$data);
 
     }
 

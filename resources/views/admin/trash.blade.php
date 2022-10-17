@@ -46,7 +46,7 @@
                         <a href="{{route('admin.leads.index')}}" class="btn btn btn-info btn-rounded btn-fw">Back</a>
                         <br>
                         <br>
-                        <form action="{{route('admin.leads.exportods')}}" method="POST">
+                        {{-- <form action="{{route('admin.leads.exportods')}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label">From</label>
@@ -59,12 +59,53 @@
                             <div class="tile-footer">
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Export(.ods)</button>&nbsp;&nbsp;&nbsp;
                             </div>
-                        </form>
+                        </form> --}}
                         <form action="" method="POST">
                             @csrf
                         </form>
                         <form action="" method="POST">
                             @csrf
+                        </form>
+
+                        <form action="{{URL::current()}}" method="GET" class="form-inline">
+                            @csrf
+                            <div class="form-group">
+                                <div class="form-group mb-4 mx-2">
+                                    <label class="control-label mx-2">Added By</label>
+                                    <select name="employe" class="form-control mx2">
+                                        <option value="">All</option>
+                                        @foreach ($employes as $employe)
+                                            <option value="{{$employe->username}}" @selected(request('employe') == {{$employe->username}})>{{$employe->username}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                {{-- <div class="form-group mb-4 mx-2">
+                                    <label class="control-label mx-2">Project</label>
+                                    <select name="project" class="form-control mx2">
+                                        <option value="">All</option>
+                                        <option value="doshtu" @selected(request('project') == 'doshtu')>Doshtu</option>
+                                        <option value="rekmaz" @selected(request('project') == 'rekmaz')>Rekmaz</option>
+                                        <option value="undefined" @selected(request('project') == 'undefined')>Undefined</option>
+                                    </select>
+                                </div> --}}
+                                <div class="form-group mb-4 mx-2">
+                                    <label class="control-label mx-2">From</label>
+                                    <input type="date" class="form-control inpust-sm" name="date_started" value="{{request('date_started')}}">
+                                </div>
+                                <div class="form-group mb-4 mx-2">
+                                    <label class="control-label mx-2">To</label>
+                                    <input type="date" class="form-control inpust-sm" name="date_endded" value="{{request('date_endded')}}">
+                                </div >
+                                <div class="form-group mb-4 mx-2">
+                                    <button class="btn btn-secondary" name="action" value="filter" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Filter</button>&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <div class="form-group mb-4 mx-2">
+                                    <button class="btn btn-primary" name="action" value="export" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Export</button>&nbsp;&nbsp;&nbsp;
+                                </div>
+                                {{-- <div class="form-group mb-4 mx-2">
+                                    <button class="btn btn-danger" name="action" value="archive" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Archive</button>&nbsp;&nbsp;&nbsp;
+                                </div> --}}
+                            </div>
                         </form>
                         {{-- <a class="btn btn-primary" href="{{route('admin.leads.exportods')}}">Export(.ods)</a>
                         <a class="btn btn-primary" href="{{route('admin.leads.exportcls')}}">Export(.csv)</a>
@@ -86,6 +127,7 @@
                                     <th>RekMaz</th>
                                     <th>Undefined</th>
                                     <th>Note</th>
+                                    <th>Created At</th>
                                     <th>Action </th>
                                 </tr>
                             </thead>
@@ -104,6 +146,7 @@
                                         <td>{{$persone->getRekmaz()}}</td>
                                         <td>{{$persone->getundefined()}}</td>
                                         <td>{{$persone->note}}</td>
+                                        <td>{{$persone->created_at}}</td>
                                         <td><a href="{{route('admin.leads.force-delete',$persone->id)}}" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 @endforeach

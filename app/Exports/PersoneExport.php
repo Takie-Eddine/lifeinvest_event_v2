@@ -82,5 +82,6 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
         if (!$this->started && !$this->endded && $this->employe) {
             return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('employe' , '=' ,$this->employe)->get();
         }
+
     }
 }
