@@ -7,14 +7,76 @@ use App\Models\Persone;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PersoneExport;
+use App\Models\Employe;
 use Carbon\Carbon;
 
 class LeadController extends Controller
 {
     public function index(){
-        $data['persones'] = Persone::all();
+
+        $request = request();
+
+        $data['employes'] = Employe::all();
+        $data['persones'] = Persone::filter($request->query())->get();
 
 
+        switch($request->input('action')){
+
+            case 'filter';
+                //return $request;
+                $data['persones'] = Persone::filter($request->query())->get();
+            break;
+
+            case 'export';
+            $data['persones'] = Persone::filter($request->query())->get();
+
+            if ($request->date_started &&  $request->date_endded ) {
+                $from =  Carbon::parse($request->date_started)->toDateTimeString();
+                $to = Carbon::parse( $request->date_endded)->toDateTimeString();
+
+
+            }
+
+            if ($request->date_started && !$request->date_endded) {
+                $from =  Carbon::parse($request->date_started)->toDateTimeString();
+                $to = $request->date_endded ;
+
+            }
+
+
+            if (!$request->date_started && $request->date_endded) {
+                $from =  $request->date_started;
+                $to = Carbon::parse($request->date_endded)->toDateTimeString() ;
+
+            }
+
+            if (!$request->date_started && !$request->date_endded) {
+                $from =  $request->date_started;
+                $to = $request->date_endded ;
+
+            }
+
+
+
+
+            return Excel::download(new PersoneExport($from,$to, $request->employe ),'leads.ods');
+            break;
+
+            case 'archive';
+                $data['persones'] = Persone::filter($request->query())->get();
+
+                if ($data['persones']->count()==0) {
+                    return redirect()->back()->with(['toast_error' => ' Not Found!']);
+                }
+
+                foreach ( $data['persones'] as $persone) {
+
+                    $persone->delete($persone->id);
+                }
+
+                return redirect()->back()->with(['toast_success' => ' Archived with success!']);
+            break;
+        };
 
         return view('admin.lead',$data);
 
@@ -33,60 +95,60 @@ class LeadController extends Controller
         return redirect()->back()->with(['toast_success'=>'Archived with success']);
 
     }
-    public function exportods(Request $request){
+    // public function exportods(Request $request){
 
 
-        if ($request->started &&  $request->endded) {
-            $from =  Carbon::parse($request->started)->toDateTimeString();
-            $to = Carbon::parse( $request->endded)->toDateTimeString();
-        }
+    //     if ($request->started &&  $request->endded) {
+    //         $from =  Carbon::parse($request->started)->toDateTimeString();
+    //         $to = Carbon::parse( $request->endded)->toDateTimeString();
+    //     }
 
-        if ($request->started && !$request->endded) {
-            $from =  Carbon::parse($request->started)->toDateTimeString();
-            $to = $request->endded ;
-        }
-
-
-        if (!$request->started && $request->endded) {
-            $from =  $request->started;
-            $to = Carbon::parse($request->endded)->toDateTimeString() ;
-        }
-
-        if (!$request->started && !$request->endded) {
-            $from =  $request->started;
-            $to = $request->endded ;
-        }
+    //     if ($request->started && !$request->endded) {
+    //         $from =  Carbon::parse($request->started)->toDateTimeString();
+    //         $to = $request->endded ;
+    //     }
 
 
-        //return 'From: '. $from  .'   '   . ' To:   ' .$to;
+    //     if (!$request->started && $request->endded) {
+    //         $from =  $request->started;
+    //         $to = Carbon::parse($request->endded)->toDateTimeString() ;
+    //     }
+
+    //     if (!$request->started && !$request->endded) {
+    //         $from =  $request->started;
+    //         $to = $request->endded ;
+    //     }
+
+
+    //     //return 'From: '. $from  .'   '   . ' To:   ' .$to;
 
 
 
-        return Excel::download(new PersoneExport($from,$to),'leads.ods');
-    }
+    //     return Excel::download(new PersoneExport($from,$to),'leads.ods');
+    // }
 
-    public function exportxls(Request $request){
-
-
-        $from =  Carbon::parse($request->started)->toDateTimeString();
-        $to = Carbon::parse( $request->endded)->toDateTimeString();
-
-        return $from . '' .$to;
-
-        return Excel::download(new PersoneExport( $from, $to),'leads.xls');
-    }
-
-    public function exportcls(Request $request){
+    // public function exportxls(Request $request){
 
 
-        return Excel::download(new PersoneExport($request->started,$request->ended),'leads.csv');
-    }
+    //     $from =  Carbon::parse($request->started)->toDateTimeString();
+    //     $to = Carbon::parse( $request->endded)->toDateTimeString();
+
+    //     return $from . '' .$to;
+
+    //     return Excel::download(new PersoneExport( $from, $to),'leads.xls');
+    // }
+
+    // public function exportcls(Request $request){
+
+
+    //     return Excel::download(new PersoneExport($request->started,$request->ended),'leads.csv');
+    // }
 
 
 
     public function trash(){
 
-        $persones = Persone::onlyTrashed()->paginate(2);
+        $persones = Persone::onlyTrashed()->get();
 
         return view('admin.trash',compact('persones'));
 
@@ -115,5 +177,33 @@ class LeadController extends Controller
         $category->forceDelete();
 
         return redirect()->route('admin.leads.trash')->with(['toast_success' => ' deleted forever!']);
+    }
+
+
+
+    public function multipleDelete(Request $request){
+
+        $request->validate([
+
+            'date_started' => ['nullable' ,'date' , 'before:today'],
+            'date_endded' => ['nullable' ,'date' , 'after_or_equal:date_started'],
+        ]);
+
+
+        $persones = Persone::whereBetween('created_at',[$request->date_started ,$request->date_endded])->get();
+
+        //return $persones->first()->id;
+
+        if ($persones->count()==0) {
+            return redirect()->route('admin.leads.index')->with(['toast_error' => ' Not Found!']);
+        }
+
+        foreach ($persones as $persone) {
+
+            $persone->delete($persone->id);
+        }
+
+        return redirect()->route('admin.leads.index')->with(['toast_success' => ' Archived with success!']);
+
     }
 }

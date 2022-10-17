@@ -69,7 +69,8 @@ use App\Http\Controllers\Admin\UserController;
             Route::post('/export2' , [LeadController::class , 'exportxls'])->name('admin.leads.exportxls');
             Route::get('/trash',[LeadController::class, 'trash'])->name('admin.leads.trash');
             Route::put('/{category}/restore',[LeadController::class, 'restore'])->name('admin.leads.restore');
-            Route::get('/categories/{category}/force-delete',[LeadController::class, 'forceDelete'])->name('admin.leads.force-delete');
+            Route::get('/{category}/force-delete',[LeadController::class, 'forceDelete'])->name('admin.leads.force-delete');
+            Route::post('/delete-multiple' , [LeadController::class , 'multipleDelete'])->name('admin.leads.deletemultiple');
 
         });
 

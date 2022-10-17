@@ -13,11 +13,13 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
 
     public $started;
     public $endded;
+    public $employe;
 
-    public function __construct( $started , $endded)
+    public function __construct( $started , $endded , $employe)
     {
         $this->started = $started;
         $this->endded = $endded;
+        $this->employe = $employe;
     }
 
 
@@ -61,21 +63,24 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
     */
     public function collection()
     {
-        if ($this->started === $this->endded) {
+        if ($this->started === $this->endded && !$this->employe) {
             return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->whereDate('created_at', '=' , $this->started)->get();
         }
-        if (!$this->started) {
+        if (!$this->started && !$this->employe) {
             return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('created_at', '<=' , $this->endded)->get();
         }
-        if (!$this->endded) {
+        if (!$this->endded && !$this->employe) {
             return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('created_at', '>=' , $this->started)->get();
         }
-        if (!($this->started) && !($this->endded)) {
+        if (!($this->started) && !($this->endded) && !($this->employe)) {
             Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->get();
         }
-        if ($this->started && $this->endded) {
-            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->whereBetween('created_at',[ $this->started , $this->endded])->get();
+        if ($this->started && $this->endded && $this->employe) {
+            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->whereBetween('created_at',[ $this->started , $this->endded])->where('employe' , '=' ,$this->employe)->get();
         }
 
+        if (!$this->started && !$this->endded && $this->employe) {
+            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('employe' , '=' ,$this->employe)->get();
+        }
     }
 }
