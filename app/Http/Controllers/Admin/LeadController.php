@@ -191,7 +191,7 @@ class LeadController extends Controller
 
             }
 
-            return Excel::download(new PersoneExport($from,$to, $request->employe ),'leads.ods');
+            return Excel::download(new PersoneExport( $from, $to, $request->employe ),'leads.ods');
             break;
 
         };
