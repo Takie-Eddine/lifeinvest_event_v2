@@ -30,19 +30,39 @@ class LeadController extends Controller
             return redirect()->back()->with(['toast_error'=>'There is a problem']);
         }
         $investor->delete();
-        return redirect()->back()->with(['toast_success'=>'Deleted with success']);
+        return redirect()->back()->with(['toast_success'=>'Archived with success']);
 
     }
     public function exportods(Request $request){
 
 
-        $from =  Carbon::parse($request->started)->toDateTimeString();
-        $to = Carbon::parse( $request->endded)->toDateTimeString();
+        if ($request->started &&  $request->endded) {
+            $from =  Carbon::parse($request->started)->toDateTimeString();
+            $to = Carbon::parse( $request->endded)->toDateTimeString();
+        }
+
+        if ($request->started && !$request->endded) {
+            $from =  Carbon::parse($request->started)->toDateTimeString();
+            $to = $request->endded ;
+        }
+
+
+        if (!$request->started && $request->endded) {
+            $from =  $request->started;
+            $to = Carbon::parse($request->endded)->toDateTimeString() ;
+        }
+
+        if (!$request->started && !$request->endded) {
+            $from =  $request->started;
+            $to = $request->endded ;
+        }
+
+
+        //return 'From: '. $from  .'   '   . ' To:   ' .$to;
 
 
 
-
-        return Excel::download(new PersoneExport(Carbon::parse($request->started)->toDateTimeString(),Carbon::parse( $request->endded)->toDateTimeString()),'leads.ods');
+        return Excel::download(new PersoneExport($from,$to),'leads.ods');
     }
 
     public function exportxls(Request $request){
@@ -51,6 +71,7 @@ class LeadController extends Controller
         $from =  Carbon::parse($request->started)->toDateTimeString();
         $to = Carbon::parse( $request->endded)->toDateTimeString();
 
+        return $from . '' .$to;
 
         return Excel::download(new PersoneExport( $from, $to),'leads.xls');
     }
@@ -59,5 +80,40 @@ class LeadController extends Controller
 
 
         return Excel::download(new PersoneExport($request->started,$request->ended),'leads.csv');
+    }
+
+
+
+    public function trash(){
+
+        $persones = Persone::onlyTrashed()->paginate(2);
+
+        return view('admin.trash',compact('persones'));
+
+    }
+
+
+    public function restore(Request $request ,$id){
+
+        $category = Persone::onlyTrashed()->find($id);
+
+        if (!$category) {
+            return redirect()->route('admin.leads.trash')->with(['toast_error' => 'Not found']);
+        }
+        $category->restore();
+
+        return redirect()->route('admin.leads.trash')->with(['toast_success' => ' restored!']);
+    }
+
+
+    public function forceDelete($id){
+        $category = Persone::onlyTrashed()->find($id);
+
+        if (!$category) {
+            return redirect()->route('admin.leads.trash')->with(['toast_error' => 'Not found']);
+        }
+        $category->forceDelete();
+
+        return redirect()->route('admin.leads.trash')->with(['toast_success' => ' deleted forever!']);
     }
 }

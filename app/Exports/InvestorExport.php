@@ -13,8 +13,8 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class InvestorExport implements FromQuery, WithHeadings ,WithMapping
 {
 
-    protected $started ;
-    protected $endded ;
+    private $started ;
+    private $endded ;
 
     public function __construct($started , $endded)
     {

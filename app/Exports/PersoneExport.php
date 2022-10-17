@@ -61,6 +61,21 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
     */
     public function collection()
     {
-        return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('created_at','>=', $this->started)->where('created_at' , '<=' ,$this->endded)->get();
+        if ($this->started === $this->endded) {
+            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->whereDate('created_at', '=' , $this->started)->get();
+        }
+        if (!$this->started) {
+            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('created_at', '<=' , $this->endded)->get();
+        }
+        if (!$this->endded) {
+            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('created_at', '>=' , $this->started)->get();
+        }
+        if (!($this->started) && !($this->endded)) {
+            Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->get();
+        }
+        if ($this->started && $this->endded) {
+            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->whereBetween('created_at',[ $this->started , $this->endded])->get();
+        }
+
     }
 }

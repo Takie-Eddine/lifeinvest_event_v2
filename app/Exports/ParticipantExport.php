@@ -11,8 +11,8 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class ParticipantExport implements  WithHeadings ,FromQuery , WithMapping
 {
-    public $started;
-    public $endded;
+    private $started;
+    private $endded;
 
     public function __construct( $started , $endded)
     {

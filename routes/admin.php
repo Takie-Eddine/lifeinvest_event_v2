@@ -67,6 +67,9 @@ use App\Http\Controllers\Admin\UserController;
             Route::post('/export' , [LeadController::class , 'exportods'])->name('admin.leads.exportods');
             Route::post('/export1' , [LeadController::class , 'exportcls'])->name('admin.leads.exportcls');
             Route::post('/export2' , [LeadController::class , 'exportxls'])->name('admin.leads.exportxls');
+            Route::get('/trash',[LeadController::class, 'trash'])->name('admin.leads.trash');
+            Route::put('/{category}/restore',[LeadController::class, 'restore'])->name('admin.leads.restore');
+            Route::get('/categories/{category}/force-delete',[LeadController::class, 'forceDelete'])->name('admin.leads.force-delete');
 
         });
 

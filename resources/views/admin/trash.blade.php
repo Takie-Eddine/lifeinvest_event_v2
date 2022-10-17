@@ -36,18 +36,16 @@
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
                 <li class="breadcrumb-item">Leads</li>
-                <li class="breadcrumb-item"><a href="#">Index</a></li>
+                <li class="breadcrumb-item"><a href="#">Archive</a></li>
             </ul>
         </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
-                        <h3 class="tile-title">Leads</h3>
-
-                        <a href="{{route('admin.leads.trash')}}" class="btn btn btn-info btn-rounded btn-fw">Archive</a>
+                        <h3 class="tile-title">Archive</h3>
+                        <a href="{{route('admin.leads.index')}}" class="btn btn btn-info btn-rounded btn-fw">Back</a>
                         <br>
                         <br>
-
                         <form action="{{route('admin.leads.exportods')}}" method="POST">
                             @csrf
                             <div class="form-group">
@@ -88,7 +86,6 @@
                                     <th>RekMaz</th>
                                     <th>Undefined</th>
                                     <th>Note</th>
-                                    <th>Created At</th>
                                     <th>Action </th>
                                 </tr>
                             </thead>
@@ -107,8 +104,7 @@
                                         <td>{{$persone->getRekmaz()}}</td>
                                         <td>{{$persone->getundefined()}}</td>
                                         <td>{{$persone->note}}</td>
-                                        <td>{{$persone->created_at}}</td>
-                                        <td><a href="{{route('admin.leads.delete',$persone->id)}}" class="btn btn-danger">Archive</a></td>
+                                        <td><a href="{{route('admin.leads.force-delete',$persone->id)}}" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
