@@ -62,10 +62,10 @@ class Persone extends Model
             $builder->where('persones.employe','=', $value);
         });
         $builder->when($filters['date_started'] ?? false,function ($builder,$value){
-            $builder->where('persones.created_at','>=', $value);
+            $builder->whereDate('persones.created_at','>=', $value);
         });
         $builder->when($filters['date_endded'] ?? false,function ($builder,$value){
-            $builder->where('persones.created_at','<=', $value);
+            $builder->whereDate('persones.created_at','<=', $value);
         });
 
 
