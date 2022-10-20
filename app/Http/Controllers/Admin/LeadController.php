@@ -7,6 +7,7 @@ use App\Models\Persone;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PersoneExport;
+use App\Exports\TrashExport;
 use App\Models\Employe;
 use Carbon\Carbon;
 
@@ -191,7 +192,8 @@ class LeadController extends Controller
 
             }
 
-            return Excel::download(new PersoneExport( $from, $to, $request->employe ),'leads.ods');
+            //return $request ;
+            return Excel::download(new TrashExport( $from, $to, $request->employe ),'leads.ods');
             break;
 
         };

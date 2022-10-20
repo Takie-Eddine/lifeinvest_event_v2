@@ -72,11 +72,8 @@ class PersoneExport implements FromCollection, WithHeadings , WithMapping
         if (!$this->endded && !$this->employe) {
             return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->where('created_at', '>=' , $this->started)->get();
         }
-        if (!($this->started) && !($this->endded) && !($this->employe)) {
-            Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->get();
-        }
         if ($this->started && $this->endded && $this->employe) {
-            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->whereBetween('created_at',[ $this->started , $this->endded])->where('employe' , '=' ,$this->employe)->get();
+            return Persone::select('id','first_name','last_name','phone','ofice_phone','email','employe','note','rekmaz','doshtu','undefined')->whereDateBetween('created_at',[ $this->started , $this->endded])->where('employe' , '=' ,$this->employe)->get();
         }
 
         if (!$this->started && !$this->endded && $this->employe) {
