@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Persone extends Model
 {
@@ -75,6 +76,22 @@ class Persone extends Model
         // if ($filters['status'] ?? false) {
         //     $builder->where('status','=', $filters['status']);
         // }
+    }
+
+
+
+    public function getImageUrlAttribute(){
+
+        if(!$this->photo){
+            return 'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg';
+        }
+
+        if (Str::startsWith($this->photo,['http://' , 'https://'])) {
+            return $this->photo;
+        }
+
+        return asset('assets/Image/' .$this->photo);
+
     }
 
 }

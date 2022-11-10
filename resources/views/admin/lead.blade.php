@@ -162,7 +162,7 @@
                                         <td>{{$persone->phone}}</td>
                                         <td>{{$persone->ofice_phone}}</td>
                                         <td>{{$persone->email}}</td>
-                                        <td><img src="{{asset('assets/Image/'.$persone->photo) }}"style="height: 100px; width: 150px;"></td>
+                                        <td><img src="{{$persone->image_url }}"style="height: 100px; width: 150px;"></td>
                                         <td>{{$persone->employe}}</td>
                                         <td>{{$persone->getDoshtu()}}</td>
                                         <td>{{$persone->getRekmaz()}}</td>
