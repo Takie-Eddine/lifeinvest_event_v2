@@ -147,7 +147,10 @@
                                         <td>{{$persone->getundefined()}}</td>
                                         <td>{{$persone->note}}</td>
                                         <td>{{$persone->created_at}}</td>
-                                        <td><a href="{{route('admin.leads.force-delete',$persone->id)}}" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="{{route('admin.leads.force-delete',$persone->id)}}" class="btn btn-danger">Delete</a>
+                                            <br/>
+                                            <a href="{{route('admin.leads.restore',$persone->id)}}" class="btn btn-dark">Restore</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
