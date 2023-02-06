@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EventBookController;
 use App\Http\Controllers\Admin\InvestorController;
 use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\NewlifeLeadController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ParticipantController  ;
 use App\Http\Controllers\Admin\PermissionController;
@@ -108,6 +109,10 @@ use App\Http\Controllers\Admin\UserController;
             Route::get('/' , [PermissionController::class , 'index'])->name('admin.permission.index');
             Route::post('/store' , [PermissionController::class , 'store'])->name('admin.permission.store');
             Route::get('/delete/{id}' , [PermissionController::class , 'delete'])->name('admin.permission.delete');
+        });
+
+        Route::group(['namespace' => 'Admin', 'middleware' => 'can:newlife', 'prefix' => 'newlife'],function(){
+            Route::get('/' , [NewlifeLeadController::class , 'index'])->name('admin.newlife.index');
         });
 
 

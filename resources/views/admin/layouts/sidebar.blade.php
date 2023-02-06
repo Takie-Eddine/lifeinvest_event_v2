@@ -31,6 +31,12 @@
                 </li>
             @endcan
 
+            @can('newlife')
+                <li><a class="treeview-item" href="{{route('admin.newlife.index')}}"><i class="app-menu__icon fa fa-th-list"></i> New Life</a>
+
+                </li>
+            @endcan
+
             @can('users')
                 <li><a class="treeview-item" href="{{route('admin.users.index')}}"><i class="app-menu__icon fa fa-th-list"></i> Users</a>
 

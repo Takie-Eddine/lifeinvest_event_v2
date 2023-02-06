@@ -11,7 +11,7 @@ return [
         'users' => 'users control' ,
         'permission' => 'permission control' ,
         'notification' => 'notification control' ,
-
+        'newlife' => 'new life control',
     ]
 
 
