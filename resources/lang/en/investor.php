@@ -18,7 +18,7 @@ return [
     'heading2'=>'WE WORK SEAMLESSLY WITH OUR INVESTORS FOR THE LONG-TERM',
     'about_desc'=>'LIFENVST is a venture capital firm that invests early in founders building fast-growing technology companies. We focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.',
     'about_slogan'=>'Reliable, Sustainable, and Transparent Investment.',
-    
+
     'services-1'=>'1. Detect the market gap and find a solution.',
     'services-2'=>'2. Project financial studies.',
     'services-3'=>'3. Launching the project and offering it for investment.',
@@ -35,7 +35,7 @@ return [
     'text3'=>'One Counter',
     'text4'=>'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
     'text5'=>'What we give?',
-    
+
     'text7'=>'Lorem ipsum dolor',
     'text8'=>'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odi',
     'text9'=>'Lorem ipsum dolor',
@@ -50,7 +50,7 @@ return [
     'country' => 'Country',
     'city' => 'City',
     'share value' => 'Share Value',
-    'share number' => 'Share Number' ,
+    'share number' => 'Share Quantity' ,
     'min' => 'min' ,
     'invesment value' => 'Invesment Value',
     'send' => 'Send',

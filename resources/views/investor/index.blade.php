@@ -23,7 +23,7 @@
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('assets/css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/5cd97d9bd2.js" crossorigin="anonymous"></script>
 
 <!-- Google Font -->
@@ -204,7 +204,7 @@
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
 
                                         <label for="">{{__('investor.share value')}}</label>
-                                        <input name="share_value" id="share_value" type="number" placeholder="{{__('investor.share value')}}" class="form-control"  value="{{$options->share_value}}" readonly>
+                                        <input name="share_value" id="share_value" type="number" placeholder="{{__('investor.share value')}}" class="form-control border-0"  value="{{$options->share_value}}" readonly>
                                         @error('share_value')
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
@@ -217,7 +217,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
-                                        <input name="investment_value" id="total_1" type="number" placeholder="{{__('investor.invesment value')}}" class="form-control" readonly >
+                                        <input name="investment_value" id="total_1" type="number" placeholder="{{__('investor.invesment value')}}" class="form-control border-0" readonly >
                                         @error('investment_value')
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
