@@ -25,9 +25,9 @@ class InvestorController extends Controller
 
         //$data['counter_rekmaz'] = Investor::where('doshtu','==',0)->sum('counter');
 
-        $data['total'] = Investor::where('doshtu','!=',0)->sum('counter');
-        $data['counter_doshtu'] = (Investor::sum('counter') - $data['total'])+93;
-        $data['rest'] = ($data['total'] - $data['counter_doshtu']);
+        $data['total'] = (Investor::where('doshtu','!=',0)->sum('counter')) +93;
+
+        $data['rest'] = ($data['options']->doshtu_max - $data['total'] );
 
         return view('investor.index',$data);
 
@@ -37,7 +37,8 @@ class InvestorController extends Controller
 
     public function create(InvestorRequest $request){
 
-        try{
+        return $request ;
+        // try{
 
             DB::beginTransaction();
 
@@ -72,7 +73,7 @@ class InvestorController extends Controller
 
             $share = Share::create([
                 'investor_id' =>$investor->id,
-                'investment_value' =>$request->investment_value,
+                'investment_value' => ($request->share_value *  $request->share_number),
                 'share_value' =>$request->share_value,
                 'share_number' =>$request->share_number,
             ]);
@@ -87,11 +88,11 @@ class InvestorController extends Controller
 
             DB::commit();
             return redirect()->route('investor.index')->with(['toast_success'=>$msg]);
-        }catch(Exception $ex){
+        // }catch(Exception $ex){
 
-            DB::rollback();
-            return redirect()->route('investor.index')->with(['error' => $erroMsg]);
-        }
+        //     DB::rollback();
+        //     return redirect()->route('investor.index')->with(['error' => $erroMsg]);
+        // }
 
     }
 
