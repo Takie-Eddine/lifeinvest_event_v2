@@ -37,22 +37,21 @@ class InvestorController extends Controller
 
     public function create(InvestorRequest $request){
 
-        return $request ;
-        // try{
+        try{
 
             DB::beginTransaction();
 
-        if (!$request->has('project')){
-                return redirect()->route('investor.index')->with(['toast_error' => 'There is problem']);
-            }
+        // if (!$request->has('project')){
+        //         return redirect()->route('investor.index')->with(['toast_error' => 'There is problem']);
+        //     }
 
-            $rekmaz = 0 ;
-            $doshtu = 1;
-            if ($request->project == 'rekmaz') {
+            // $rekmaz = 0 ;
+            // $doshtu = 1;
+            // if ($request->project == 'rekmaz') {
 
-                $rekmaz = 1;
-                $doshtu = 0;
-            }
+            //     $rekmaz = 1;
+            //     $doshtu = 0;
+            // }
 
             $counter = ($request->share_number)/Option::first()->step;
 
@@ -63,17 +62,19 @@ class InvestorController extends Controller
                 'country_id' =>$request->country,
                 'email' =>$request->email,
                 'counter' =>$counter,
-                'doshtu' => $doshtu,
-                'rekmaz' => $rekmaz,
+                'doshtu' => 1,
+                'rekmaz' => 0,
             ]);
 
 
             $msg =__('investor.success');
             $erroMsg =__('investor.error');
 
+            $total = (($request->share_value) * ($request->share_number));
+
             $share = Share::create([
                 'investor_id' =>$investor->id,
-                'investment_value' => ($request->share_value *  $request->share_number),
+                'investment_value' => $total,
                 'share_value' =>$request->share_value,
                 'share_number' =>$request->share_number,
             ]);
@@ -88,11 +89,11 @@ class InvestorController extends Controller
 
             DB::commit();
             return redirect()->route('investor.index')->with(['toast_success'=>$msg]);
-        // }catch(Exception $ex){
+        }catch(Exception $ex){
 
-        //     DB::rollback();
-        //     return redirect()->route('investor.index')->with(['error' => $erroMsg]);
-        // }
+            DB::rollback();
+            return redirect()->route('investor.index')->with(['error' => $ex]);
+        }
 
     }
 

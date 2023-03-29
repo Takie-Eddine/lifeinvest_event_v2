@@ -34,10 +34,10 @@ class InvestorRequest extends FormRequest
             'email'=>'required|email|unique:investors,email',
             'share_value' => 'required|exists:options,share_value',
             'share_number' => 'required',
-            'investment_value' => 'required',
+            //'investment_value' => 'required',
             //'policies' => 'required',
             //'policies' => 'required',
-            'project' => 'required|in:doshtu,rekmaz'
+            //'project' => 'required|in:doshtu,rekmaz'
         ];
     }
 

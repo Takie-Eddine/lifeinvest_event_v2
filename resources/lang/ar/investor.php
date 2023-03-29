@@ -42,8 +42,8 @@ return [
     'min' => 'الحد الأدنى' ,
     'invesment value' => 'قيمة الاستثمار',
     'send' => 'إرسال',
-    'share ocuppce' => 'المحجوزة',
-    'share rest' => 'المتبقية' ,
+    'share ocuppce' => 'الاسهم المشتراة',
+    'share rest' => 'الاسهم المتبقية' ,
 
 
 
