@@ -214,7 +214,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
                                         <label for="">{{__('investor.share number')}}</label>
-                                        <input name="share_number" id="share_number" type="number" placeholder="{{__('investor.min')}} {{$options->min_inv}}" class="form-control"   step="{{$options->step}}" min="{{$options->min_inv}}" max="{{$options->max_inv}}" required>
+                                        <input name="share_number" id="share_number" type="number" placeholder="{{__('investor.min')}} {{$options->min_inv}}" class="form-control"   step="{{$options->step}}" min="{{$options->min_inv}}" max="170" required>
                                         @error('share_number')
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror

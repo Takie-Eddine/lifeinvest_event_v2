@@ -23,10 +23,11 @@ class InvestorController extends Controller
         //$data['shares'] = Share::all();
         $data['options'] = Option::first();
 
-        $data['counter_rekmaz'] = Investor::where('doshtu','==',0)->sum('counter');
+        //$data['counter_rekmaz'] = Investor::where('doshtu','==',0)->sum('counter');
 
-        $data['counter_doshtu'] = (Investor::sum('counter') - $data['counter_rekmaz'])+93;
-        $data['rest'] = (Investor::sum('counter') - $data['counter_doshtu']);
+        $data['total'] = Investor::where('doshtu','!=',0)->sum('counter');
+        $data['counter_doshtu'] = (Investor::sum('counter') - $data['total'])+93;
+        $data['rest'] = ($data['total'] - $data['counter_doshtu']);
 
         return view('investor.index',$data);
 
