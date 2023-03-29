@@ -68,6 +68,7 @@ return [
     'Investors-Number-doshtu'=>'Invest with us in Doshtu',
     'Investors-Number-rekmaz'=>'Invest with us in Rekmaz',
 
-    'share ocuppce' => 'Share bought' ,
+    'share ocuppce' => 'Share reserved' ,
     'share rest' => 'Share remaining' ,
+    'share number1' => ' The number of shares offered'
 ];

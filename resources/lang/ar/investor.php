@@ -39,10 +39,11 @@ return [
     'city' => 'المدينة',
     'share value' => 'قيمة السهم',
     'share number' => 'عدد الأسهم' ,
+    'share number1' => ' عدد الأسهم المطروحة' ,
     'min' => 'الحد الأدنى' ,
     'invesment value' => 'قيمة الاستثمار',
     'send' => 'إرسال',
-    'share ocuppce' => 'الاسهم المشتراة',
+    'share ocuppce' => 'الاسهم المحجوزة',
     'share rest' => 'الاسهم المتبقية' ,
 
 

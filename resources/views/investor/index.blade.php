@@ -63,11 +63,11 @@
                 <span class="heading">{{__('investor.investor-counter')}}</span>
 
                 <!-- Countdown -->
-                <div class="page-countdown">
+                <div class="heading">
                     <ul id="" class="countdown clearfix">
-                        <li><span class="days"> {{__('investor.share number')}} {{$options->doshtu_max}}</span></li><br><br> <br>
-                        <li><span class="days"> {{__('investor.share ocuppce')}} {{$total}}</span></li><br><br> <br>
-                        <li><span class="days"> {{__('investor.share rest')}} {{$rest}}</span></li>
+                        <li><span class="days"> {{__('investor.share number1')}} <p> </p>{{$options->doshtu_max}}</span></li>
+                        <li><span class="days"> {{__('investor.share ocuppce')}} <p> </p> {{$total}}</span></li>
+                        <li><span class="days"> {{__('investor.share rest')}} <p> </p>{{$rest}}</span></li>
                         {{-- <li><span class="days">{{$counter_doshtu}}/{{$options->doshtu_max}}</span><i class="days_ref">{{__('investor.Investors-Number-doshtu')}}</i></li> --}}
                         {{-- <li><span class="days">{{$counter_rekmaz}}/{{$options->rekmaz_max}}</span><i class="days_ref">{{__('investor.Investors-Number-rekmaz')}}</i></li> --}}
 
