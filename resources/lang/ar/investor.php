@@ -18,7 +18,7 @@ return [
     'home'=> 'الرئيسية',
     'about'=> 'المعلومات',
     'service'=> 'الخدمات',
-    'text1'=>'عداد واحد يجعل حياتك أفضل مع أفضل المنتجات',
+    'text1'=>'Lifenvst ادخل عالم الاستثمار مع ',
     'text2'=>'نحن نعمل بجد على موقعنا. تستطيع أن ترى النتيجة قريبا. يرجى الاشتراك في النشرة الإخبارية.',
     'text3'=>'عداد واحد',
     'text4' => 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
@@ -42,9 +42,11 @@ return [
     'min' => 'الحد الأدنى' ,
     'invesment value' => 'قيمة الاستثمار',
     'send' => 'إرسال',
-    
-    
-    
+    'share ocuppce' => 'المحجوزة',
+    'share rest' => 'المتبقية' ,
+
+
+
     //translate
     'heading'=>'نستثمر مع شركائنا على المدى الطويل',
     'heading2'=>'نحمي رأس المال من خلال الاستثمار في المشاريع الطموحة والمدروسة بشكل جيد',
@@ -58,7 +60,7 @@ return [
     'choose_your_counrty' => 'اختر البلد',
     'policy'=>' الشروط والأحكام',
     'agree'=>' أوافق على',
-    
+
     'save' => 'حفظ',
     'persone' => 'تم التسجيل بنجاح' ,
     'remember' =>' يرجى أخذ صورة للشاشة  للتذكر',
@@ -66,7 +68,7 @@ return [
 
     'personerror' => 'هناك مشكلة',
     'choose project'=> ' اختر المشروع',
-    
+
     'Investors-Number-doshtu'=>'استثمر معنا في دوشتو',
     'Investors-Number-rekmaz'=>'استثمر معنا في ريكماز',
 ];

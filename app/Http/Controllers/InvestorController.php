@@ -26,6 +26,7 @@ class InvestorController extends Controller
         $data['counter_rekmaz'] = Investor::where('doshtu','==',0)->sum('counter');
 
         $data['counter_doshtu'] = (Investor::sum('counter') - $data['counter_rekmaz'])+93;
+        $data['rest'] = (Investor::sum('counter') - $data['counter_doshtu']);
 
         return view('investor.index',$data);
 

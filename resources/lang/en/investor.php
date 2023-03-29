@@ -30,7 +30,7 @@ return [
     'home'=> 'Home',
     'about'=> 'About',
     'service'=> 'Services',
-    'text1'=>'One Counter make your life better with best products',
+    'text1'=>'Enter the world of investment with Lifenvst',
     'text2'=>'We are working very hard on our website. You can see result soon. Please subscribe for newsletter.',
     'text3'=>'One Counter',
     'text4'=>'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
@@ -66,5 +66,8 @@ return [
     'personerror' => 'There is problem',
     'choose project'=> 'choose project',
     'Investors-Number-doshtu'=>'Invest with us in Doshtu',
-    'Investors-Number-rekmaz'=>'Invest with us in Rekmaz'
+    'Investors-Number-rekmaz'=>'Invest with us in Rekmaz',
+
+    'share ocuppce' => 'reserved' ,
+    'share rest' => 'remaining' ,
 ];

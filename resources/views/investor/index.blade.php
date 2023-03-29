@@ -64,8 +64,11 @@
 
                 <!-- Countdown -->
                 <div class="page-countdown">
-                    <ul id="counter" class="countdown clearfix">
-                        <li><span class="days">{{$counter_doshtu}}/{{$options->doshtu_max}}</span><i class="days_ref">{{__('investor.Investors-Number-doshtu')}}</i></li>
+                    <ul id="" class="countdown clearfix">
+                        <li><span class="days"> {{__('investor.share number')}} {{$options->doshtu_max}}</span></li><br><br>
+                        <li><span class="days"> {{__('investor.share ocuppce')}} {{$counter_doshtu}}</span></li><br><br>
+                        <li><span class="days"> {{__('investor.share rest')}} {{$rest}}</span></li>
+                        {{-- <li><span class="days">{{$counter_doshtu}}/{{$options->doshtu_max}}</span><i class="days_ref">{{__('investor.Investors-Number-doshtu')}}</i></li> --}}
                         {{-- <li><span class="days">{{$counter_rekmaz}}/{{$options->rekmaz_max}}</span><i class="days_ref">{{__('investor.Investors-Number-rekmaz')}}</i></li> --}}
 
                     </ul>
@@ -134,7 +137,7 @@
 
                                     <h1 class="main-title">{{__('investor.text1')}}</h1>
                                 </div>
-                                <p class="animatt-middium">{{__('investor.text2')}}</p>
+                                {{-- <p class="animatt-middium">{{__('investor.text2')}}</p> --}}
 
                                 <form  action="{{route('investor.create')}}" method="post"  class="form clearfix animatt-middium">
                                     @csrf
@@ -173,7 +176,7 @@
                                         @enderror
                                     </div>
 
-                                    <div>
+                                    {{-- <div>
                                         <label for="">{{__('investor.choose project')}} </label>
                                         <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
                                             <div class="form-check">
@@ -184,7 +187,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        {{-- <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
                                             <div class="form-check">
                                                 <input class="form-check-input" id="presence" type="radio" value="rekmaz" name="project"  {{ old('project') == 'rekmaz' ? 'checked' : '' }}/>
                                                 <label class="form-check-label" for="register-privacy-policy">Rekmaz</label>
@@ -192,8 +195,8 @@
                                                 <span class="text-danger">{{$message }}</span>
                                                 @enderror
                                             </div>
-                                        </div> --}}
-                                    </div>
+                                        </div>
+                                    </div> --}}
                                     {{-- <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
                                         <input name="city" id="name" type="text" placeholder="{{__('investor.city')}}" class="form-control" value="{{old('city')}}" >
                                         @error('city')
@@ -211,17 +214,17 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
                                         <label for="">{{__('investor.share number')}}</label>
-                                        <input name="share_number" id="share_number" type="number" placeholder="{{__('investor.min')}} {{$options->min_inv}}" class="form-control"   step="{{$options->step}}" min="{{$options->min_inv}}" required>
+                                        <input name="share_number" id="share_number" type="number" placeholder="{{__('investor.min')}} {{$options->min_inv}}" class="form-control"   step="{{$options->step}}" min="{{$options->min_inv}}" max="{{$options->max_inv}}" required>
                                         @error('share_number')
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                                    {{-- <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
                                         <input name="investment_value" id="total_1" type="number" placeholder="{{__('investor.invesment value')}}" class="form-control border-0" readonly >
                                         @error('investment_value')
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-1">
                                         <div class="form-check">
                                             {{-- <input class="form-check-input" id="agree" type="checkbox" name="policies" tabindex="4" />
